@@ -187,12 +187,16 @@ html,body{min-height:100%;background:var(--bg);color:var(--t);font-family:var(--
 /* ── LLAVES EXTRA ── */
 .st-sec{margin-bottom:24px;}
 .st-gtitle{font-family:var(--ft);font-size:17px;letter-spacing:2px;color:var(--g);margin-bottom:8px;}
-.st-tbl{width:100%;border-collapse:collapse;background:var(--s2);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;}
-.st-tbl th{padding:8px 6px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);font-weight:600;text-align:center;background:rgba(0,200,83,.06);border-bottom:1px solid var(--b);}
-.st-tbl th:first-child{text-align:left;padding-left:12px;}
-.st-tbl td{padding:9px 6px;font-size:12px;text-align:center;border-bottom:1px solid rgba(0,200,83,.05);}
-.st-tbl td:first-child{text-align:left;padding-left:12px;display:flex;align-items:center;gap:6px;}
-.st-tbl tr:last-child td{border-bottom:none;}
+.st-tbl,.stbl{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed;}
+.st-tbl th,.stbl th{padding:6px 4px;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--mu);border-bottom:1px solid var(--b);text-align:center;}
+.st-tbl th:first-child,.stbl th:first-child{text-align:left;width:40%;padding-left:6px;}
+.st-tbl th:not(:first-child),.stbl th:not(:first-child){width:7.5%;}
+.st-tbl td,.stbl td{padding:7px 4px;border-bottom:1px solid rgba(0,200,83,.05);text-align:center;}
+.st-tbl td:first-child,.stbl td:first-child{text-align:left;padding-left:6px;display:flex;align-items:center;gap:6px;}
+.st-tbl tr:last-child td,.stbl tr:last-child td{border-bottom:none;}
+.st-tbl tr.adv td,.stbl tr.adv td{background:rgba(0,200,83,.05);}
+.st-tbl tr.adv2 td,.stbl tr.adv2 td{background:rgba(255,214,0,.04);}
+.st-tbl tr.adv3 td,.stbl tr.adv3 td{background:rgba(100,180,255,.04);}
 .st-pts{font-weight:700;font-family:var(--ft);font-size:16px;color:var(--gold);}
 .st-dg{color:var(--mu);}
 .tc-tbl{width:100%;border-collapse:collapse;background:var(--s2);border:1px solid rgba(255,214,0,.2);border-radius:var(--r);overflow:hidden;margin-bottom:24px;}
@@ -1476,55 +1480,90 @@ function renderResultados() {
     const gRes=(gameState.results.gruposPartidos&&gameState.results.gruposPartidos[gName])||{};
     let played=0;
     Object.keys(gRes).forEach(k=>{const m=gRes[k];if(m.g1!==''&&m.g1!=null&&m.g2!==''&&m.g2!=null)played++;});
-    const sec=document.createElement('div');sec.className='rs-sec';
-    const hdr=document.createElement('div');hdr.className='rs-hdr';
-    hdr.innerHTML='<span class="rs-gname">GRUPO '+gName+'</span><span class="rs-count">'+played+'/6 jugados</span>';
+
+    const sec=document.createElement('div');
+    sec.style.cssText='margin-bottom:20px;';
+
+    const hdr=document.createElement('div');
+    hdr.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,200,83,.2);margin-bottom:6px;';
+    hdr.innerHTML='<span style="font-family:var(--ft);font-size:16px;letter-spacing:2px;color:var(--g)">GRUPO '+gName+'</span><span style="font-size:11px;color:var(--mu)">'+played+'/6 jugados</span>';
     sec.appendChild(hdr);
+
     matches.forEach(m => {
       const key=m.j+'_'+m.p;
       const saved=gRes[key]||{g1:'',g2:'',w:''};
       const hasResult=saved.g1!==''&&saved.g1!=null&&saved.g2!==''&&saved.g2!=null;
       const w=saved.w||'';
-      const row=document.createElement('div');row.className='rs-mrow';
-      const jSpan=document.createElement('span');jSpan.className='rs-jornada';jSpan.textContent='J'+m.j+' P'+m.p;
-      const ta=document.createElement('span');ta.className='rs-ta'+(w===m.t1?' rw':'');
-      ta.appendChild(document.createTextNode(m.t1+' '));ta.appendChild(flagEl(m.t1));
+
+      const row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;padding:8px 4px;border-bottom:1px solid rgba(0,200,83,.06);gap:8px;';
+
+      const jSpan=document.createElement('span');
+      jSpan.style.cssText='font-size:10px;color:var(--mu);font-weight:600;width:40px;flex-shrink:0;';
+      jSpan.textContent='J'+m.j+' P'+m.p;
+
+      const ta=document.createElement('div');
+      ta.style.cssText='flex:1;text-align:right;font-size:13px;font-weight:'+(w===m.t1?'700':'400')+';color:'+(w===m.t1?'var(--g)':'var(--mu)')+';display:flex;align-items:center;justify-content:flex-end;gap:6px;';
+      ta.appendChild(document.createTextNode(m.t1+' '));
+      ta.appendChild(flagEl(m.t1));
+
       let scoreDiv;
       if(isAdmin){
-        scoreDiv=document.createElement('div');scoreDiv.className='rs-edit';
-        const ia=document.createElement('input');ia.className='rs-inp';ia.type='number';ia.min=0;ia.max=20;ia.placeholder='—';ia.value=saved.g1||'';
+        scoreDiv=document.createElement('div');
+        scoreDiv.style.cssText='display:flex;align-items:center;gap:4px;flex-shrink:0;';
+        const ia=document.createElement('input');
+        ia.className='sinp';ia.type='number';ia.min=0;ia.max=20;ia.placeholder='—';ia.value=saved.g1||'';
+        ia.style.width='38px';
         ia.onchange=()=>saveMatchResult(gName,key,'g1',ia.value,m.t1,m.t2);
-        const sep=document.createElement('span');sep.style.cssText='color:var(--muted);font-size:14px;font-weight:600';sep.textContent='–';
-        const ib=document.createElement('input');ib.className='rs-inp';ib.type='number';ib.min=0;ib.max=20;ib.placeholder='—';ib.value=saved.g2||'';
+        const sep=document.createElement('span');
+        sep.style.cssText='color:var(--mu);font-size:16px;font-weight:600;font-family:var(--ft);';sep.textContent='-';
+        const ib=document.createElement('input');
+        ib.className='sinp';ib.type='number';ib.min=0;ib.max=20;ib.placeholder='—';ib.value=saved.g2||'';
+        ib.style.width='38px';
         ib.onchange=()=>saveMatchResult(gName,key,'g2',ib.value,m.t1,m.t2);
         scoreDiv.appendChild(ia);scoreDiv.appendChild(sep);scoreDiv.appendChild(ib);
       } else {
-        scoreDiv=document.createElement('div');scoreDiv.className='rs-score';scoreDiv.textContent=hasResult?saved.g1+' – '+saved.g2:'Pend.';
+        scoreDiv=document.createElement('div');
+        scoreDiv.style.cssText='width:60px;text-align:center;font-size:13px;color:'+(hasResult?'var(--t)':'var(--mu)')+';flex-shrink:0;font-family:var(--ft);font-size:18px;';
+        scoreDiv.textContent=hasResult?saved.g1+' - '+saved.g2:'Pend.';
       }
-      const tb=document.createElement('span');tb.className='rs-tb'+(w===m.t2?' rw':'');
-      tb.appendChild(flagEl(m.t2));tb.appendChild(document.createTextNode(' '+m.t2));
+
+      const tb=document.createElement('div');
+      tb.style.cssText='flex:1;font-size:13px;font-weight:'+(w===m.t2?'700':'400')+';color:'+(w===m.t2?'var(--g)':'var(--mu)')+';display:flex;align-items:center;gap:6px;';
+      tb.appendChild(flagEl(m.t2));
+      tb.appendChild(document.createTextNode(' '+m.t2));
+
       row.appendChild(jSpan);row.appendChild(ta);row.appendChild(scoreDiv);row.appendChild(tb);
       sec.appendChild(row);
     });
     gr.appendChild(sec);
   });
+
   const el=document.getElementById('resElim');el.innerHTML='';
   ELIM.forEach(phase=>{
-    const sec=document.createElement('div');sec.className='rs-sec';
-    const hdr=document.createElement('div');hdr.className='rs-hdr';
-    hdr.innerHTML='<span class="rs-gname">'+phase.name.toUpperCase()+'</span>';
+    const sec=document.createElement('div');sec.style.marginBottom='20px';
+    const hdr=document.createElement('div');
+    hdr.style.cssText='padding:8px 0;border-bottom:1px solid rgba(0,200,83,.2);margin-bottom:6px;font-family:var(--ft);font-size:16px;letter-spacing:2px;color:var(--g);';
+    hdr.textContent=phase.name.toUpperCase();
     sec.appendChild(hdr);
     for(let i=0;i<phase.count;i++){
       const res=(gameState.results.elim[phase.id]||{})[i]||{};
       const t1=res.t1||'TBD',t2=res.t2||'TBD',w=res.winner||'';
-      const row=document.createElement('div');row.className='rs-mrow';
-      const ta=document.createElement('span');ta.className='rs-ta'+(w===t1&&t1!=='TBD'?' rw':'');
+      const row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;padding:8px 4px;border-bottom:1px solid rgba(0,200,83,.06);gap:8px;';
+      const pSpan=document.createElement('span');
+      pSpan.style.cssText='font-size:10px;color:var(--mu);font-weight:600;width:40px;flex-shrink:0;';
+      pSpan.textContent='P'+(i+1);
+      const ta=document.createElement('div');
+      ta.style.cssText='flex:1;text-align:right;font-size:13px;font-weight:'+(w===t1?'700':'400')+';color:'+(w===t1?'var(--g)':'var(--mu)')+';display:flex;align-items:center;justify-content:flex-end;gap:6px;';
       if(t1!=='TBD'){ta.appendChild(document.createTextNode(t1+' '));ta.appendChild(flagEl(t1));}else ta.textContent=t1;
-      const sd=document.createElement('div');sd.className='rs-score';sd.textContent=w?'✓':(res.t1?'Pend.':'—');
-      const tb=document.createElement('span');tb.className='rs-tb'+(w===t2&&t2!=='TBD'?' rw':'');
+      const sd=document.createElement('div');
+      sd.style.cssText='width:60px;text-align:center;font-size:13px;color:var(--mu);flex-shrink:0;';
+      sd.textContent=w?'✓':(res.t1?'Pend.':'—');
+      const tb=document.createElement('div');
+      tb.style.cssText='flex:1;font-size:13px;font-weight:'+(w===t2?'700':'400')+';color:'+(w===t2?'var(--g)':'var(--mu)')+';display:flex;align-items:center;gap:6px;';
       if(t2!=='TBD'){tb.appendChild(flagEl(t2));tb.appendChild(document.createTextNode(' '+t2));}else tb.textContent=t2;
-      const jSpan=document.createElement('span');jSpan.className='rs-jornada';jSpan.textContent='P'+(i+1);
-      row.appendChild(jSpan);row.appendChild(ta);row.appendChild(sd);row.appendChild(tb);
+      row.appendChild(pSpan);row.appendChild(ta);row.appendChild(sd);row.appendChild(tb);
       sec.appendChild(row);
     }
     el.appendChild(sec);
