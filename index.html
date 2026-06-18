@@ -70,19 +70,30 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .psh-team{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .popt{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;cursor:pointer;margin-bottom:7px;transition:all .12s;}
 .popt:hover,.popt.active{border-color:var(--green);background:rgba(74,222,128,.08);}
-.ph-sec{margin-bottom:22px;}
-.ph-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.ph-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1.5px;}
-.ph-pts{font-size:11px;background:rgba(74,222,128,.12);color:var(--green);padding:3px 10px;border-radius:999px;border:1px solid rgba(74,222,128,.2);}
-.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:8px;}
-.mc{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.mlbl{font-size:10px;color:var(--muted);padding:5px 11px;background:var(--bg3);text-align:center;letter-spacing:.5px;font-weight:500;}
-.mtb{width:100%;background:transparent;border:none;color:var(--text);padding:9px 12px;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;transition:background .12s;display:flex;align-items:center;gap:7px;}
-.mtb:hover{background:var(--bg3);}
-.mtb.win{background:rgba(74,222,128,.1);color:var(--green);}
-.mtb.lk{cursor:default;}
-.mtb.lk:hover{background:transparent;}
-.mdiv{height:1px;background:var(--border);}
+.bk-wrap{overflow-x:auto;padding-bottom:16px;}
+.bk-tree{display:flex;gap:0;align-items:flex-start;min-width:max-content;}
+.bk-col{display:flex;flex-direction:column;min-width:180px;}
+.bk-col-hdr{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1.5px;color:var(--green);text-align:center;padding:10px 8px;border-bottom:1px solid rgba(74,222,128,.15);margin-bottom:8px;}
+.bk-col-hdr span{font-size:10px;background:rgba(74,222,128,.1);color:var(--green);padding:2px 8px;border-radius:999px;display:block;margin-top:3px;font-family:'Inter',sans-serif;letter-spacing:.5px;}
+.bk-slots{display:flex;flex-direction:column;}
+.bk-match{display:flex;align-items:stretch;margin-bottom:8px;position:relative;}
+.bk-match-inner{flex:1;background:#0f2410;border:1px solid rgba(74,222,128,.12);border-radius:10px;overflow:hidden;}
+.bk-team{display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;transition:background .12s;border-bottom:1px solid rgba(255,255,255,.05);min-height:38px;}
+.bk-team:last-child{border-bottom:none;}
+.bk-team:hover{background:rgba(74,222,128,.06);}
+.bk-team.bk-win{background:rgba(74,222,128,.15);color:var(--green);}
+.bk-team.bk-lose{opacity:.45;}
+.bk-team.bk-tbd{color:var(--muted);cursor:default;font-style:italic;}
+.bk-team.bk-tbd:hover{background:transparent;}
+.bk-team img{width:20px;height:14px;object-fit:cover;border-radius:2px;flex-shrink:0;}
+.bk-team-name{font-size:12px;font-weight:500;flex:1;}
+.bk-corr{font-size:10px;color:var(--muted);text-align:center;padding:3px;cursor:pointer;background:var(--bg3);}
+.bk-corr:hover{color:var(--green);}
+.bk-connector{width:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+.bk-spacer{flex:1;}
+.bk-final-box{background:linear-gradient(135deg,rgba(74,222,128,.1),rgba(34,197,94,.04));border:1px solid rgba(74,222,128,.3);border-radius:14px;padding:16px;text-align:center;margin-top:8px;}
+.bk-champ-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
+.bk-champ-val{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:var(--green);display:flex;align-items:center;justify-content:center;gap:8px;}
 .champ-box{background:linear-gradient(135deg,rgba(74,222,128,.1),rgba(34,197,94,.04));border:1px solid rgba(74,222,128,.25);border-radius:14px;padding:18px;text-align:center;margin:18px 0 14px;}
 .champ-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
 .champ-val{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:var(--green);}
@@ -685,61 +696,252 @@ async function setGroupPos(group, team, val) {
 }
 
 // ── BRACKET ──
+// FIFA 2026 official R16 format (32 teams → 16 matchups)
+// Groups A-L, 2 qualify directly + 8 best 3rds
+const R16_MATCHUPS = [
+  {id:'r16_0', home:'1A', away:'2C'},
+  {id:'r16_1', home:'1B', away:'2D'},
+  {id:'r16_2', home:'1C', away:'2A'},
+  {id:'r16_3', home:'1D', away:'2B'},
+  {id:'r16_4', home:'1E', away:'2G'},
+  {id:'r16_5', home:'1F', away:'2H'},
+  {id:'r16_6', home:'1G', away:'2E'},
+  {id:'r16_7', home:'1H', away:'2F'},
+  {id:'r16_8', home:'1I', away:'2K'},
+  {id:'r16_9', home:'1J', away:'2L'},
+  {id:'r16_10', home:'1K', away:'2I'},
+  {id:'r16_11', home:'1L', away:'2J'},
+  {id:'r16_12', home:'3ABC', away:'3DEF'},
+  {id:'r16_13', home:'3GHI', away:'3JKL'},
+  {id:'r16_14', home:'W_r16_0', away:'W_r16_1'},
+  {id:'r16_15', home:'W_r16_2', away:'W_r16_3'},
+];
+
+function getClassifiedTeam(code, userGroups, realGroups) {
+  // code like '1A', '2B', '3ABC'
+  const pos = code[0];
+  const grp = code.slice(1);
+  if (pos === '1' || pos === '2') {
+    // Use real results if available, else user prediction
+    const g = realGroups[grp] || {};
+    const ug = (userGroups || {})[grp] || {};
+    const src = Object.keys(g).length ? g : ug;
+    const team = Object.keys(src).find(t => (src[t].pos || src[t]) === pos);
+    return team || null;
+  }
+  if (pos === '3') {
+    // best 3rd from groups listed
+    return null; // handled separately
+  }
+  return null;
+}
+
+function getUserBracketTeam(matchId, userBracket) {
+  return (userBracket || {})[matchId] || null;
+}
+
 function renderBracket() {
   const open = gameState.phases.elim;
   document.getElementById('brAlerts').innerHTML = open
-    ? '<div class="al al-g">Predicciones abiertas. Toca para elegir quién avanza.</div><div class="al al-a">16avos=3pts · 8avos=4pts · Cuartos=5pts · Semis=6pts · 3er puesto=6pts · Final=10pts · Marcador exacto=+10pts</div>'
+    ? '<div class="al al-g">Predicciones abiertas. Haz clic en el equipo que crees que avanza.</div><div class="al al-a">16avos=3pts · 8avos=4pts · Cuartos=5pts · Semis=6pts · 3er puesto=6pts · Final=10pts · Marcador exacto=+10pts</div>'
     : '<div class="al al-r">⚠ Las eliminatorias aún no están abiertas.</div>';
-  const content = document.getElementById('brContent'); content.innerHTML='';
-  ELIM.forEach(phase => {
-    const sec = document.createElement('div'); sec.className='ph-sec';
-    const hdr = document.createElement('div'); hdr.className='ph-hdr';
-    hdr.innerHTML='<span class="ph-name">'+phase.name+'</span><span class="ph-pts">'+phase.pts+' pts</span>';
-    sec.appendChild(hdr);
-    const mgrid = document.createElement('div'); mgrid.className='mg';
-    for(let i=0;i<phase.count;i++){
-      const bk=((currentUser.bracket||{})[phase.id+'_'+i])||{};
-      const resMatch=(gameState.results.elim[phase.id]||{})[i]||{};
-      const t1=bk.t1||resMatch.t1||'Por definir';
-      const t2=bk.t2||resMatch.t2||'Por definir';
-      const winner=bk.winner||'';
-      const mc=document.createElement('div'); mc.className='mc';
-      const lbl=document.createElement('div'); lbl.className='mlbl'; lbl.textContent='Partido '+(i+1);
-      const b1=document.createElement('button');
-      b1.className='mtb'+(winner===t1&&t1!=='Por definir'?' win':'')+((!open||t1==='Por definir')?' lk':'');
-      b1.appendChild(flagEl(t1)); const s1=document.createElement('span'); s1.textContent=t1; b1.appendChild(s1);
-      const dv=document.createElement('div'); dv.className='mdiv';
-      const b2=document.createElement('button');
-      b2.className='mtb'+(winner===t2&&t2!=='Por definir'?' win':'')+((!open||t2==='Por definir')?' lk':'');
-      b2.appendChild(flagEl(t2)); const s2=document.createElement('span'); s2.textContent=t2; b2.appendChild(s2);
-      if(open&&t1!=='Por definir') b1.onclick=()=>setBracketW(phase.id,i,t1,t2);
-      if(open&&t2!=='Por definir') b2.onclick=()=>setBracketW(phase.id,i,t2,t1);
-      mc.appendChild(lbl);mc.appendChild(b1);mc.appendChild(dv);mc.appendChild(b2);
-      mgrid.appendChild(mc);
+
+  const content = document.getElementById('brContent');
+  content.innerHTML = '';
+
+  // Build bracket tree
+  const wrap = document.createElement('div');
+  wrap.className = 'bk-wrap';
+  const tree = document.createElement('div');
+  tree.className = 'bk-tree';
+  wrap.appendChild(tree);
+  content.appendChild(wrap);
+
+  // Get user bracket state
+  const ub = currentUser.bracket || {};
+  const rg = gameState.results.grupos || {};
+  const ug = currentUser.groups || {};
+
+  // Resolve team from user groups prediction
+  function resolveTeam(code) {
+    if (!code) return null;
+    if (code.startsWith('W_')) {
+      // Winner of a previous match
+      const prevId = code.slice(2);
+      return ub[prevId] || null;
     }
-    sec.appendChild(mgrid); content.appendChild(sec);
+    const pos = code[0];
+    const grp = code.slice(1);
+    if (pos === '1' || pos === '2') {
+      const src = Object.keys(rg[grp] || {}).length ? rg[grp] : (ug[grp] || {});
+      const team = Object.keys(src).find(t => {
+        const v = src[t]; 
+        return (v && (v.pos === pos || v === pos));
+      });
+      return team || null;
+    }
+    return null;
+  }
+
+  // Build matches per round
+  const rounds = [
+    {
+      id: 'r16', name: '16AVOS', pts: 3,
+      matches: Array.from({length:16}, (_,i) => ({
+        id: 'r16_' + i,
+        t1: resolveTeam(R16_MATCHUPS[i] ? R16_MATCHUPS[i].home : null),
+        t2: resolveTeam(R16_MATCHUPS[i] ? R16_MATCHUPS[i].away : null),
+      }))
+    },
+    {
+      id: 'r8', name: '8AVOS', pts: 4,
+      matches: Array.from({length:8}, (_,i) => ({
+        id: 'r8_' + i,
+        t1: ub['r16_' + (i*2)] || null,
+        t2: ub['r16_' + (i*2+1)] || null,
+      }))
+    },
+    {
+      id: 'qf', name: 'CUARTOS', pts: 5,
+      matches: Array.from({length:4}, (_,i) => ({
+        id: 'qf_' + i,
+        t1: ub['r8_' + (i*2)] || null,
+        t2: ub['r8_' + (i*2+1)] || null,
+      }))
+    },
+    {
+      id: 'sf', name: 'SEMIS', pts: 6,
+      matches: Array.from({length:2}, (_,i) => ({
+        id: 'sf_' + i,
+        t1: ub['qf_' + (i*2)] || null,
+        t2: ub['qf_' + (i*2+1)] || null,
+      }))
+    },
+    {
+      id: 'fin', name: 'FINAL', pts: 10,
+      matches: [{
+        id: 'fin_0',
+        t1: ub['sf_0'] || null,
+        t2: ub['sf_1'] || null,
+      }]
+    }
+  ];
+
+  rounds.forEach(round => {
+    const col = document.createElement('div');
+    col.className = 'bk-col';
+    const hdr = document.createElement('div');
+    hdr.className = 'bk-col-hdr';
+    hdr.innerHTML = round.name + '<span>' + round.pts + ' PTS</span>';
+    col.appendChild(hdr);
+    const slots = document.createElement('div');
+    slots.className = 'bk-slots';
+
+    round.matches.forEach(match => {
+      const winner = ub[match.id] || null;
+      const matchDiv = document.createElement('div');
+      matchDiv.className = 'bk-match';
+      const inner = document.createElement('div');
+      inner.className = 'bk-match-inner';
+
+      [match.t1, match.t2].forEach((team, ti) => {
+        const btn = document.createElement('div');
+        if (!team) {
+          btn.className = 'bk-team bk-tbd';
+          btn.innerHTML = '<span class="bk-team-name">Por definir</span>';
+        } else {
+          let cls = 'bk-team';
+          if (winner === team) cls += ' bk-win';
+          else if (winner && winner !== team) cls += ' bk-lose';
+          btn.className = cls;
+          const fimg = flagEl(team);
+          const nameSpan = document.createElement('span');
+          nameSpan.className = 'bk-team-name';
+          nameSpan.textContent = team;
+          btn.appendChild(fimg);
+          btn.appendChild(nameSpan);
+          if (open) {
+            btn.onclick = () => pickBracketWinner(match.id, team, round.id);
+          }
+        }
+        inner.appendChild(btn);
+      });
+
+      if (winner && open) {
+        const corr = document.createElement('div');
+        corr.className = 'bk-corr';
+        corr.textContent = 'corregir';
+        corr.onclick = () => clearBracketPick(match.id, round.id);
+        inner.appendChild(corr);
+      }
+
+      matchDiv.appendChild(inner);
+      slots.appendChild(matchDiv);
+    });
+
+    col.appendChild(slots);
+    tree.appendChild(col);
   });
-  const fin=((currentUser.bracket||{})['fin_0'])||{};
-  document.getElementById('champVal').textContent=fin.winner||'—';
-  const finRes=(gameState.results.elim['fin']||{})[0]||{};
-  document.getElementById('finLblA').textContent=fin.t1||finRes.t1||'Equipo A';
-  document.getElementById('finLblB').textContent=fin.t2||finRes.t2||'Equipo B';
-  document.getElementById('finSA').value=(currentUser.finalScore||{}).a||'';
-  document.getElementById('finSB').value=(currentUser.finalScore||{}).b||'';
+
+  // Champion box
+  const champ = ub['fin_0'] || null;
+  document.getElementById('champVal').innerHTML = '';
+  if (champ) {
+    const img = flagEl(champ);
+    document.getElementById('champVal').appendChild(img);
+    const sp = document.createElement('span');
+    sp.textContent = champ;
+    document.getElementById('champVal').appendChild(sp);
+  } else {
+    document.getElementById('champVal').textContent = '—';
+  }
+
+  // Final score inputs
+  const finRes = (gameState.results.elim['fin'] || {})[0] || {};
+  document.getElementById('finLblA').textContent = ub['sf_0'] || 'Equipo A';
+  document.getElementById('finLblB').textContent = ub['sf_1'] || 'Equipo B';
+  document.getElementById('finSA').value = (currentUser.finalScore || {}).a || '';
+  document.getElementById('finSB').value = (currentUser.finalScore || {}).b || '';
 }
 
-async function setBracketW(phase, idx, winner, loser) {
-  if(!currentUser.bracket)currentUser.bracket={};
-  currentUser.bracket[phase+'_'+idx]={t1:winner,t2:loser,winner};
+async function pickBracketWinner(matchId, team, roundId) {
+  if (!currentUser.bracket) currentUser.bracket = {};
+  const prev = currentUser.bracket[matchId];
+  if (prev === team) return;
+  currentUser.bracket[matchId] = team;
+  // Clear downstream picks that depended on this match
+  clearDownstream(matchId, roundId);
   await saveUser(currentUser.uid, currentUser);
-  renderBracket(); showToast('Predicción guardada');
+  renderBracket();
+  showToast('Predicción guardada');
 }
 
-window.saveFinalScore = async function() {
-  currentUser.finalScore={a:document.getElementById('finSA').value,b:document.getElementById('finSB').value};
+async function clearBracketPick(matchId, roundId) {
+  if (!currentUser.bracket) return;
+  delete currentUser.bracket[matchId];
+  clearDownstream(matchId, roundId);
   await saveUser(currentUser.uid, currentUser);
-  showToast('Marcador guardado');
-};
+  renderBracket();
+  showToast('Predicción borrada');
+}
+
+function clearDownstream(matchId, roundId) {
+  // When a pick changes, clear all picks that depend on it in later rounds
+  const order = ['r16','r8','qf','sf','fin'];
+  const roundIdx = order.indexOf(roundId);
+  if (roundIdx === -1) return;
+  // Get the match index within the round
+  const matchNum = parseInt(matchId.split('_')[1]);
+  // Clear next round match
+  const nextRound = order[roundIdx + 1];
+  if (!nextRound) return;
+  const nextMatchNum = Math.floor(matchNum / 2);
+  const nextMatchId = nextRound + '_' + nextMatchNum;
+  if (currentUser.bracket[nextMatchId]) {
+    delete currentUser.bracket[nextMatchId];
+    clearDownstream(nextMatchId, nextRound);
+  }
+}
 
 // ── RESULTADOS ──
 function renderResultados() {
