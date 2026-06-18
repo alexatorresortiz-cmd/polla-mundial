@@ -70,81 +70,91 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .psh-team{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .popt{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;cursor:pointer;margin-bottom:7px;transition:all .12s;}
 .popt:hover,.popt.active{border-color:var(--green);background:rgba(74,222,128,.08);}
-.bk-wrap{overflow-x:auto;padding-bottom:16px;}
-.bk-tree{display:flex;gap:0;align-items:flex-start;min-width:max-content;}
-.bk-col{display:flex;flex-direction:column;min-width:180px;}
-.bk-col-hdr{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1.5px;color:var(--green);text-align:center;padding:10px 8px;border-bottom:1px solid rgba(74,222,128,.15);margin-bottom:8px;}
-.bk-col-hdr span{font-size:10px;background:rgba(74,222,128,.1);color:var(--green);padding:2px 8px;border-radius:999px;display:block;margin-top:3px;font-family:'Inter',sans-serif;letter-spacing:.5px;}
-.bk-slots{display:flex;flex-direction:column;}
-.bk-match{display:flex;align-items:stretch;margin-bottom:8px;position:relative;}
-.bk-match-inner{flex:1;background:#0f2410;border:1px solid rgba(74,222,128,.12);border-radius:10px;overflow:hidden;}
-.bk-team{display:flex;align-items:center;gap:8px;padding:9px 12px;cursor:pointer;transition:background .12s;border-bottom:1px solid rgba(255,255,255,.05);min-height:38px;}
-.bk-team:last-child{border-bottom:none;}
-.bk-team:hover{background:rgba(74,222,128,.06);}
-.bk-team.bk-win{background:rgba(74,222,128,.15);color:var(--green);}
-.bk-team.bk-lose{opacity:.45;}
-.bk-team.bk-tbd{color:var(--muted);cursor:default;font-style:italic;}
-.bk-team.bk-tbd:hover{background:transparent;}
-.bk-team img{width:20px;height:14px;object-fit:cover;border-radius:2px;flex-shrink:0;}
-.bk-team-name{font-size:12px;font-weight:500;flex:1;}
-.bk-corr{font-size:10px;color:var(--muted);text-align:center;padding:3px;cursor:pointer;background:var(--bg3);}
-.bk-corr:hover{color:var(--green);}
-.bk-connector{width:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
-.bk-spacer{flex:1;}
-.bk-final-box{background:linear-gradient(135deg,rgba(74,222,128,.1),rgba(34,197,94,.04));border:1px solid rgba(74,222,128,.3);border-radius:14px;padding:16px;text-align:center;margin-top:8px;}
-.bk-champ-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
-.bk-champ-val{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:var(--green);display:flex;align-items:center;justify-content:center;gap:8px;}
-.champ-box{background:linear-gradient(135deg,rgba(74,222,128,.1),rgba(34,197,94,.04));border:1px solid rgba(74,222,128,.25);border-radius:14px;padding:18px;text-align:center;margin:18px 0 14px;}
-.champ-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
-.champ-val{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:var(--green);}
-.final-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;}
-.final-box-t{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:11px;}
-.final-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;}
-.final-lbl{flex:1;text-align:center;font-size:12px;font-weight:600;}
-.sinp{width:54px;background:var(--bg3);border:1px solid var(--border2);border-radius:9px;padding:9px;text-align:center;color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:26px;outline:none;}
-.sinp:focus{border-color:var(--green);}
-.ssep{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--muted);}
-.sbtn{background:var(--green2);color:#000;border:none;border-radius:9px;padding:10px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:1px;cursor:pointer;width:100%;font-weight:700;}
-.sbtn:hover{background:var(--green);}
-.rs-sec{margin-bottom:22px;}
-.rs-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 0 8px;border-bottom:1px solid rgba(74,222,128,.2);margin-bottom:4px;}
-.rs-gname{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:var(--green);}
-.rs-count{font-size:11px;color:var(--muted);}
-.rs-mrow{display:flex;align-items:center;padding:10px 4px;border-bottom:1px solid var(--border);gap:8px;}
-.rs-mrow:last-child{border-bottom:none;}
-.rs-jornada{font-size:10px;color:var(--muted);font-weight:600;width:36px;flex-shrink:0;}
-.rs-ta{flex:1;text-align:right;font-size:13px;font-weight:500;color:var(--muted);display:flex;align-items:center;justify-content:flex-end;gap:6px;}
-.rs-tb{flex:1;font-size:13px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:6px;}
-.rs-ta.rw,.rs-tb.rw{color:var(--text);font-weight:700;}
-.rs-score{width:60px;text-align:center;font-size:12px;color:var(--muted);flex-shrink:0;font-weight:500;}
-.rs-edit{display:flex;align-items:center;gap:4px;width:90px;flex-shrink:0;justify-content:center;}
-.rs-inp{width:34px;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:5px 3px;text-align:center;color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:18px;outline:none;}
-.rs-inp:focus{border-color:var(--green);}
-.st-sec{margin-bottom:24px;}
-.st-gtitle{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:var(--green);margin-bottom:8px;}
-.st-tbl{width:100%;border-collapse:collapse;background:#0f2410;border:1px solid rgba(74,222,128,.12);border-radius:12px;overflow:hidden;}
-.st-tbl th{padding:8px 10px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center;background:#172e17;border-bottom:1px solid rgba(74,222,128,.1);}
-.st-tbl th:first-child{text-align:left;padding-left:14px;}
-.st-tbl td{padding:10px;font-size:13px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);}
-.st-tbl td:first-child{text-align:left;padding-left:14px;}
-.st-tbl tr:last-child td{border-bottom:none;}
-.st-pts{font-weight:700;font-family:'Bebas Neue',sans-serif;font-size:17px;}
-.st-dg{color:var(--muted);}
-.tc-tbl{width:100%;border-collapse:collapse;background:#0f1a05;border:1px solid rgba(251,191,36,.15);border-radius:12px;overflow:hidden;margin-bottom:24px;}
-.tc-tbl th{padding:8px 10px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:center;background:#1a2a05;border-bottom:1px solid rgba(251,191,36,.1);}
-.tc-tbl th:first-child{text-align:left;padding-left:14px;}
-.tc-tbl td{padding:10px;font-size:13px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04);}
-.tc-tbl td:first-child{text-align:left;padding-left:14px;}
-.tc-tbl tr:last-child td{border-bottom:none;}
-.tc-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:var(--amber);margin-bottom:8px;}
-.lv-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--green);margin:20px 0 10px;}
-.lv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px;}
-.lv-card{background:#0f2410;border:1px solid rgba(74,222,128,.12);border-radius:10px;padding:11px 14px;display:flex;align-items:center;gap:8px;}
-.lv-num{font-size:10px;font-weight:700;color:var(--muted);width:24px;flex-shrink:0;}
-.lv-t{flex:1;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;}
-.lv-t.r{justify-content:flex-end;}
-.lv-vs{font-size:11px;color:var(--muted);font-weight:600;padding:0 6px;flex-shrink:0;}
-.lv-tbd{color:var(--muted);font-style:italic;font-size:12px;}
+/* BRACKET - tree layout */
+.bwrap{overflow-x:auto;padding-bottom:1rem}
+.rds{display:flex;gap:0;min-width:960px;align-items:stretch;min-height:600px}
+.rd{display:flex;flex-direction:column;flex:1;min-width:150px;padding:0 5px}
+.rdtit{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:1px;color:var(--green);text-align:center;padding:4px 0 8px}
+/* Matches container: space-around so each match is centered in its slice */
+.rd-matches{display:flex;flex-direction:column;flex:1;justify-content:space-around}
+/* Match card */
+.bm2{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative}
+/* Team row */
+.bt{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:12px;border-bottom:1px solid rgba(0,200,83,.06);transition:.15s;min-height:34px}
+.bt.cl{cursor:pointer}.bt.cl:hover{background:rgba(0,200,83,.07)}
+.bt:last-child{border-bottom:none}
+.bt.win{background:rgba(0,200,83,.12);color:var(--green);font-weight:600}
+.bt.los{opacity:.3;text-decoration:none}
+/* Corregir button inside a won match */
+.bt-corr{display:flex;align-items:center;justify-content:flex-end;padding:2px 8px}
+.bt-corr button{font-size:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif}
+.bt-corr button:hover{color:var(--text)}
+.cbox{background:rgba(255,214,0,.08);border:1px solid rgba(255,214,0,.3);border-radius:10px;padding:14px;text-align:center;margin-top:1rem;display:none}
+.clbl{font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--amber);letter-spacing:1px;margin-bottom:6px}
+.cteam{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--amber);display:flex;align-items:center;justify-content:center;gap:10px}
+/* FINAL SCORE PRED */
+.final-score-box{margin-top:1rem;background:var(--bg2);border:1px solid rgba(255,214,0,.3);border-radius:10px;padding:1rem}
+.fslbl{font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--amber);letter-spacing:1px;margin-bottom:.75rem}
+.fsinputs{display:flex;align-items:center;gap:12px}
+.fsinp{width:52px;text-align:center;padding:8px 4px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:26px}
+.fsinp:focus{outline:none;border-color:var(--amber)}
+/* RULES */
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.rrow:last-child{border-bottom:none}
+.rl{color:var(--muted)}
+.pi{width:55px;text-align:center;padding:6px 8px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Inter',sans-serif;font-size:14px}
+.pi:focus{outline:none;border-color:var(--green)}
+.rp{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--amber)}
+.bs{margin-top:1rem;padding:10px 24px;background:var(--green);color:#000;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;cursor:pointer;transition:.2s}
+.bs:hover{background:#00e860}
+/* RANKING */
+.rt{width:100%;border-collapse:collapse}
+.rt th{text-align:left;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--border)}
+.rt td{padding:12px;border-bottom:1px solid rgba(0,200,83,.06);font-size:14px}
+.rpos{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);width:36px}
+.rpos.g{color:var(--amber)}.rpos.s{color:#ccc}.rpos.b{color:#cd7f32}
+.rpts{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--amber)}
+.ryou{background:rgba(0,200,83,.04)}
+.rdet{font-size:11px;color:var(--muted)}
+.by{font-size:10px;background:rgba(0,200,83,.15);color:var(--green);padding:2px 8px;border-radius:20px;margin-left:6px}
+.ba{font-size:10px;background:rgba(255,214,0,.15);color:var(--amber);padding:2px 8px;border-radius:20px;margin-left:6px}
+/* MODAL */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:200;padding:1rem}
+.mov.open{display:flex}
+.modal{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.5rem;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.mtit{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);margin-bottom:1rem}
+.ml{display:flex;flex-direction:column;gap:6px;max-height:300px;overflow-y:auto}
+.mi{padding:9px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:10px;transition:.15s}
+.mi:hover{border-color:var(--green);color:var(--green)}
+.mcan{margin-top:12px;width:100%;padding:9px;background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Inter',sans-serif;cursor:pointer}
+/* CONFIRM MODAL */
+.confirm-modal{background:var(--bg);border:1px solid var(--red);border-radius:10px;padding:1.5rem;width:100%;max-width:400px}
+.confirm-title{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--red);letter-spacing:1px;margin-bottom:.5rem}
+.confirm-msg{font-size:14px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.confirm-btns{display:flex;gap:10px}
+.confirm-yes{flex:1;padding:10px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;background:var(--red);color:#fff;border:none;border-radius:8px;cursor:pointer}
+.confirm-no{flex:1;padding:10px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;cursor:pointer}
+/* ADMIN */
+.adm{background:rgba(255,214,0,.04);border:1px solid rgba(255,214,0,.2);border-radius:10px;padding:1.25rem;margin-bottom:1rem}
+.admt{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--amber);margin-bottom:.75rem}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.mcard{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px}
+.mcard-lbl{font-size:11px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.mteam{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;text-align:center}
+.sinp{width:38px;text-align:center;padding:6px 4px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:'Bebas Neue',sans-serif;font-size:20px}
+.sinp:focus{outline:none;border-color:var(--green)}
+.mbtn{padding:5px 12px;font-size:12px;font-family:'Inter',sans-serif;border:1px solid var(--green);border-radius:6px;background:none;color:var(--green);cursor:pointer;transition:.2s}
+.mbtn:hover{background:var(--green);color:#000}
+.mbtn.del{border-color:var(--muted);color:var(--muted)}
+/* B32/KO */
+.b32grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.b32card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px}
+.b32lbl{font-size:11px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between}
+.b32teams{display:flex;flex-direction:column;gap:4px}
+.b32team{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;font-size:13px;border:1px solid transparent;transition:.15s}
+.b32team.clik{cursor:pointer}.b32team.clik:hover{background:rgba(0,200,83,.06)}
+.b32team.bwin{background:rgba(0,200,83,.12);border-color:var(--green);color:var(--green);font-weight:600}
+.b32team.blos{opacity:.35}
 .rk-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
 .rk-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--border);}
 .rk-row:last-child{border-bottom:none;}
@@ -269,22 +279,31 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   </div>
   <div class="sec" id="sec-bracket">
     <div class="stitle">Bracket — Mis predicciones</div>
-    <div id="brAlerts"></div>
-    <div id="brContent"></div>
-    <div class="champ-box">
-      <div class="champ-lbl">Mi Campeón 🏆</div>
-      <div class="champ-val" id="champVal">—</div>
+    <div id="lnote-b" class="note"></div>
+    <div class="note gold" style="margin-bottom:1rem">16avos=3pts · 8avos=4pts · Cuartos=5pts · Semis=6pts · Final=10pts · Marcador exacto=+10pts</div>
+    <div class="bwrap"><div class="rds" id="bracks"></div></div>
+    <div class="cbox" id="cbox">
+      <div class="clbl">Mi Campeón 🏆</div>
+      <div class="cteam" id="cteam">—</div>
     </div>
-    <div class="final-box">
-      <div class="final-box-t">Marcador exacto de la final (inc. penales) · +10 pts bonus</div>
-      <div class="final-row">
-        <div class="final-lbl" id="finLblA">Equipo A</div>
-        <input class="sinp" type="number" id="finSA" min="0" max="20" placeholder="—">
-        <div class="ssep">–</div>
-        <input class="sinp" type="number" id="finSB" min="0" max="20" placeholder="—">
-        <div class="final-lbl" id="finLblB">Equipo B</div>
+    <div class="final-score-box" id="final-score-pred" style="display:none">
+      <div class="fslbl">Marcador exacto de la final (inc. penales) · +10 pts</div>
+      <div class="fsinputs">
+        <div id="fs-teamA-lbl" style="font-size:13px;flex:1;text-align:right"><span>Finalista A</span></div>
+        <input class="fsinp" type="number" id="fs-a" min="0" max="20" placeholder="0">
+        <span style="font-family:'Bebas Neue';font-size:22px;color:var(--muted)">–</span>
+        <input class="fsinp" type="number" id="fs-b" min="0" max="20" placeholder="0">
+        <div id="fs-teamB-lbl" style="font-size:13px;flex:1"><span>Finalista B</span></div>
       </div>
-      <button class="sbtn" onclick="saveFinalScore()">Guardar marcador</button>
+      <button class="bs" onclick="saveFinalScore()">Guardar</button>
+    </div>
+    <!-- Modal for 3rd place pick -->
+    <div class="mov" id="mov" onclick="if(event.target===this)closeMod()">
+      <div class="modal">
+        <div class="mtit" id="mtit">Elegir</div>
+        <div class="ml" id="ml"></div>
+        <button class="mcan" onclick="closeMod()">Cancelar</button>
+      </div>
     </div>
   </div>
   <div class="sec" id="sec-resultados">
@@ -696,252 +715,739 @@ async function setGroupPos(group, team, val) {
 }
 
 // ── BRACKET ──
-// FIFA 2026 official R16 format (32 teams → 16 matchups)
-// Groups A-L, 2 qualify directly + 8 best 3rds
-const R16_MATCHUPS = [
-  {id:'r16_0', home:'1A', away:'2C'},
-  {id:'r16_1', home:'1B', away:'2D'},
-  {id:'r16_2', home:'1C', away:'2A'},
-  {id:'r16_3', home:'1D', away:'2B'},
-  {id:'r16_4', home:'1E', away:'2G'},
-  {id:'r16_5', home:'1F', away:'2H'},
-  {id:'r16_6', home:'1G', away:'2E'},
-  {id:'r16_7', home:'1H', away:'2F'},
-  {id:'r16_8', home:'1I', away:'2K'},
-  {id:'r16_9', home:'1J', away:'2L'},
-  {id:'r16_10', home:'1K', away:'2I'},
-  {id:'r16_11', home:'1L', away:'2J'},
-  {id:'r16_12', home:'3ABC', away:'3DEF'},
-  {id:'r16_13', home:'3GHI', away:'3JKL'},
-  {id:'r16_14', home:'W_r16_0', away:'W_r16_1'},
-  {id:'r16_15', home:'W_r16_2', away:'W_r16_3'},
+const R32_FIXED=[
+  {a:"1E",b:"3ABCDF",label:"P1"},{a:"1I",b:"3CDFGH",label:"P2"},
+  {a:"2A",b:"2B",label:"P3"},{a:"1F",b:"2C",label:"P4"},
+  {a:"2K",b:"2L",label:"P5"},{a:"1H",b:"2J",label:"P6"},
+  {a:"1D",b:"3BEFIJ",label:"P7"},{a:"1G",b:"3AEHIJ",label:"P8"},
+  {a:"1C",b:"2F",label:"P9"},{a:"2E",b:"2I",label:"P10"},
+  {a:"1A",b:"3CEFHI",label:"P11"},{a:"1L",b:"3EHIJK",label:"P12"},
+  {a:"1J",b:"2H",label:"P13"},{a:"2D",b:"2G",label:"P14"},
+  {a:"1B",b:"3EFGIJ",label:"P15"},{a:"1K",b:"3DEIJL",label:"P16"}
 ];
 
-function getClassifiedTeam(code, userGroups, realGroups) {
-  // code like '1A', '2B', '3ABC'
-  const pos = code[0];
-  const grp = code.slice(1);
-  if (pos === '1' || pos === '2') {
-    // Use real results if available, else user prediction
-    const g = realGroups[grp] || {};
-    const ug = (userGroups || {})[grp] || {};
-    const src = Object.keys(g).length ? g : ug;
-    const team = Object.keys(src).find(t => (src[t].pos || src[t]) === pos);
-    return team || null;
+const KO_PTS={r16f:3,r16:4,qf:5,sf:6,final:10};
+
+const RIDS=["r16f","r16","qf","sf","final"];
+const RLBLS=["16avos","8avos","Cuartos","Semis","Final"];
+const RSLOTS=[16,8,4,2,1];
+
+function fi2(c){ return '<img src="https://flagcdn.com/24x18/'+c+'.png" width="24" height="18" style="border-radius:2px;flex-shrink:0;vertical-align:middle" alt="">'; }
+function allTeams(){ return Object.values(GROUPS).flat(); }
+function getCode(name){ const t = Object.entries(FLAGS).find(([n]) => n === name); return t ? t[1] : 'un'; }
+
+function calcStandings2(gruposPartidos){
+  const standings={};
+  Object.entries(GROUPS).forEach(([g,teams])=>{
+    const st={};
+    teams.forEach(t=>st[t]={pts:0,gf:0,ga:0,gd:0,played:0});
+    const matches=getGroupMatches(g);
+    matches.forEach((m,mi)=>{
+      const key=m.j+'_'+m.p;
+      const sc=(gruposPartidos[g]||{})[key];
+      if(!sc||sc.g1===''||sc.g1==null||sc.g2===''||sc.g2==null)return;
+      const ga=parseInt(sc.g1)||0,gb=parseInt(sc.g2)||0;
+      st[m.t1].gf+=ga;st[m.t1].ga+=gb;st[m.t1].gd+=ga-gb;st[m.t1].played++;
+      st[m.t2].gf+=gb;st[m.t2].ga+=ga;st[m.t2].gd+=gb-ga;st[m.t2].played++;
+      if(ga>gb){st[m.t1].pts+=3;}else if(ga===gb){st[m.t1].pts++;st[m.t2].pts++;}else{st[m.t2].pts+=3;}
+    });
+    standings[g]=Object.entries(st).sort((a,b)=>b[1].pts!==a[1].pts?b[1].pts-a[1].pts:b[1].gd!==a[1].gd?b[1].gd-a[1].gd:b[1].gf-a[1].gf);
+  });
+  return standings;
+}
+
+function getBest8Thirds2(standings){
+  const thirds=[];
+  Object.entries(standings).forEach(([g,st])=>{if(st.length>=3)thirds.push({group:g,name:st[2][0],...st[2][1]});});
+  return thirds.sort((a,b)=>b.pts!==a.pts?b.pts-a.pts:b.gd!==a.gd?b.gd-a.gd:b.gf-a.gf).slice(0,8);
+}
+
+function assignThirds(best8){
+  // Official FIFA 2026 Annex C - all 495 combinations
+  const T={
+    "ABCDEFGH":["H","G","B","C","A","F","D","E"],
+    "ABCDEFGI":["C","G","B","D","A","F","E","I"],
+    "ABCDEFGJ":["C","G","B","D","A","F","E","J"],
+    "ABCDEFGK":["C","G","B","D","A","F","E","K"],
+    "ABCDEFGL":["C","G","B","D","A","F","L","E"],
+    "ABCDEFHI":["H","E","B","C","A","F","D","I"],
+    "ABCDEFHJ":["H","J","B","C","A","F","D","E"],
+    "ABCDEFHK":["H","E","B","C","A","F","D","K"],
+    "ABCDEFHL":["H","F","B","C","A","D","L","E"],
+    "ABCDEFIJ":["C","J","B","D","A","F","E","I"],
+    "ABCDEFIK":["C","E","B","D","A","F","I","K"],
+    "ABCDEFIL":["C","E","B","D","A","F","L","I"],
+    "ABCDEFJK":["C","J","B","D","A","F","E","K"],
+    "ABCDEFJL":["C","J","B","D","A","F","L","E"],
+    "ABCDEFKL":["C","E","B","D","A","F","L","K"],
+    "ABCDEGHI":["H","G","B","C","A","D","E","I"],
+    "ABCDEGHJ":["H","G","B","C","A","D","E","J"],
+    "ABCDEGHK":["H","G","B","C","A","D","E","K"],
+    "ABCDEGHL":["H","G","B","C","A","D","L","E"],
+    "ABCDEGIJ":["E","G","B","C","A","D","I","J"],
+    "ABCDEGIK":["E","G","B","C","A","D","I","K"],
+    "ABCDEGIL":["E","G","B","C","A","D","L","I"],
+    "ABCDEGJK":["E","G","B","C","A","D","J","K"],
+    "ABCDEGJL":["E","G","B","C","A","D","L","J"],
+    "ABCDEGKL":["E","G","B","C","A","D","L","K"],
+    "ABCDEHIJ":["H","J","B","C","A","D","E","I"],
+    "ABCDEHIK":["H","E","B","C","A","D","I","K"],
+    "ABCDEHIL":["H","E","B","C","A","D","L","I"],
+    "ABCDEHJK":["H","J","B","C","A","D","E","K"],
+    "ABCDEHJL":["H","J","B","C","A","D","L","E"],
+    "ABCDEHKL":["H","E","B","C","A","D","L","K"],
+    "ABCDEIJK":["E","J","B","C","A","D","I","K"],
+    "ABCDEIJL":["E","J","B","C","A","D","L","I"],
+    "ABCDEIKL":["E","I","B","C","A","D","L","K"],
+    "ABCDEJKL":["E","J","B","C","A","D","L","K"],
+    "ABCDFGHI":["H","G","B","C","A","F","D","I"],
+    "ABCDFGHJ":["H","G","B","C","A","F","D","J"],
+    "ABCDFGHK":["H","G","B","C","A","F","D","K"],
+    "ABCDFGHL":["C","G","B","D","A","F","L","H"],
+    "ABCDFGIJ":["C","G","B","D","A","F","I","J"],
+    "ABCDFGIK":["C","G","B","D","A","F","I","K"],
+    "ABCDFGIL":["C","G","B","D","A","F","L","I"],
+    "ABCDFGJK":["C","G","B","D","A","F","J","K"],
+    "ABCDFGJL":["C","G","B","D","A","F","L","J"],
+    "ABCDFGKL":["C","G","B","D","A","F","L","K"],
+    "ABCDFHIJ":["H","J","B","C","A","F","D","I"],
+    "ABCDFHIK":["H","F","B","C","A","D","I","K"],
+    "ABCDFHIL":["H","F","B","C","A","D","L","I"],
+    "ABCDFHJK":["H","J","B","C","A","F","D","K"],
+    "ABCDFHJL":["C","J","B","D","A","F","L","H"],
+    "ABCDFHKL":["H","F","B","C","A","D","L","K"],
+    "ABCDFIJK":["C","J","B","D","A","F","I","K"],
+    "ABCDFIJL":["C","J","B","D","A","F","L","I"],
+    "ABCDFIKL":["C","I","B","D","A","F","L","K"],
+    "ABCDFJKL":["C","J","B","D","A","F","L","K"],
+    "ABCDGHIJ":["H","G","B","C","A","D","I","J"],
+    "ABCDGHIK":["H","G","B","C","A","D","I","K"],
+    "ABCDGHIL":["H","G","B","C","A","D","L","I"],
+    "ABCDGHJK":["H","G","B","C","A","D","J","K"],
+    "ABCDGHJL":["H","G","B","C","A","D","L","J"],
+    "ABCDGHKL":["H","G","B","C","A","D","L","K"],
+    "ABCDGIJK":["C","J","B","D","A","G","I","K"],
+    "ABCDGIJL":["C","J","B","D","A","G","L","I"],
+    "ABCDGIKL":["I","G","B","C","A","D","L","K"],
+    "ABCDGJKL":["C","J","B","D","A","G","L","K"],
+    "ABCDHIJK":["H","J","B","C","A","D","I","K"],
+    "ABCDHIJL":["H","J","B","C","A","D","L","I"],
+    "ABCDHIKL":["H","I","B","C","A","D","L","K"],
+    "ABCDHJKL":["H","J","B","C","A","D","L","K"],
+    "ABCDIJKL":["I","J","B","C","A","D","L","K"],
+    "ABCEFGHI":["H","G","B","C","A","F","E","I"],
+    "ABCEFGHJ":["H","G","B","C","A","F","E","J"],
+    "ABCEFGHK":["H","G","B","C","A","F","E","K"],
+    "ABCEFGHL":["H","G","B","C","A","F","L","E"],
+    "ABCEFGIJ":["E","G","B","C","A","F","I","J"],
+    "ABCEFGIK":["E","G","B","C","A","F","I","K"],
+    "ABCEFGIL":["E","G","B","C","A","F","L","I"],
+    "ABCEFGJK":["E","G","B","C","A","F","J","K"],
+    "ABCEFGJL":["E","G","B","C","A","F","L","J"],
+    "ABCEFGKL":["E","G","B","C","A","F","L","K"],
+    "ABCEFHIJ":["H","J","B","C","A","F","E","I"],
+    "ABCEFHIK":["H","E","B","C","A","F","I","K"],
+    "ABCEFHIL":["H","E","B","C","A","F","L","I"],
+    "ABCEFHJK":["H","J","B","C","A","F","E","K"],
+    "ABCEFHJL":["H","J","B","C","A","F","L","E"],
+    "ABCEFHKL":["H","E","B","C","A","F","L","K"],
+    "ABCEFIJK":["E","J","B","C","A","F","I","K"],
+    "ABCEFIJL":["E","J","B","C","A","F","L","I"],
+    "ABCEFIKL":["E","I","B","C","A","F","L","K"],
+    "ABCEFJKL":["E","J","B","C","A","F","L","K"],
+    "ABCEGHIJ":["H","J","B","C","A","G","E","I"],
+    "ABCEGHIK":["E","G","B","C","A","H","I","K"],
+    "ABCEGHIL":["E","G","B","C","A","H","L","I"],
+    "ABCEGHJK":["H","J","B","C","A","G","E","K"],
+    "ABCEGHJL":["H","J","B","C","A","G","L","E"],
+    "ABCEGHKL":["E","G","B","C","A","H","L","K"],
+    "ABCEGIJK":["E","J","B","C","A","G","I","K"],
+    "ABCEGIJL":["E","J","B","C","A","G","L","I"],
+    "ABCEGIKL":["E","G","B","A","I","C","L","K"],
+    "ABCEGJKL":["E","J","B","C","A","G","L","K"],
+    "ABCEHIJK":["E","J","B","C","A","H","I","K"],
+    "ABCEHIJL":["E","J","B","C","A","H","L","I"],
+    "ABCEHIKL":["E","I","B","C","A","H","L","K"],
+    "ABCEHJKL":["E","J","B","C","A","H","L","K"],
+    "ABCEIJKL":["E","J","B","A","I","C","L","K"],
+    "ABCFGHIJ":["H","G","B","C","A","F","I","J"],
+    "ABCFGHIK":["H","G","B","C","A","F","I","K"],
+    "ABCFGHIL":["H","G","B","C","A","F","L","I"],
+    "ABCFGHJK":["H","G","B","C","A","F","J","K"],
+    "ABCFGHJL":["H","G","B","C","A","F","L","J"],
+    "ABCFGHKL":["H","G","B","C","A","F","L","K"],
+    "ABCFGIJK":["C","J","B","F","A","G","I","K"],
+    "ABCFGIJL":["C","J","B","F","A","G","L","I"],
+    "ABCFGIKL":["I","G","B","C","A","F","L","K"],
+    "ABCFGJKL":["C","J","B","F","A","G","L","K"],
+    "ABCFHIJK":["H","J","B","C","A","F","I","K"],
+    "ABCFHIJL":["H","J","B","C","A","F","L","I"],
+    "ABCFHIKL":["H","I","B","C","A","F","L","K"],
+    "ABCFHJKL":["H","J","B","C","A","F","L","K"],
+    "ABCFIJKL":["I","J","B","C","A","F","L","K"],
+    "ABCGHIJK":["H","J","B","C","A","G","I","K"],
+    "ABCGHIJL":["H","J","B","C","A","G","L","I"],
+    "ABCGHIKL":["I","G","B","C","A","H","L","K"],
+    "ABCGHJKL":["H","J","B","C","A","G","L","K"],
+    "ABCGIJKL":["I","J","B","C","A","G","L","K"],
+    "ABCHIJKL":["I","J","B","C","A","H","L","K"],
+    "ABDEFGHI":["H","G","B","D","A","F","E","I"],
+    "ABDEFGHJ":["H","G","B","D","A","F","E","J"],
+    "ABDEFGHK":["H","G","B","D","A","F","E","K"],
+    "ABDEFGHL":["H","G","B","D","A","F","L","E"],
+    "ABDEFGIJ":["E","G","B","D","A","F","I","J"],
+    "ABDEFGIK":["E","G","B","D","A","F","I","K"],
+    "ABDEFGIL":["E","G","B","D","A","F","L","I"],
+    "ABDEFGJK":["E","G","B","D","A","F","J","K"],
+    "ABDEFGJL":["E","G","B","D","A","F","L","J"],
+    "ABDEFGKL":["E","G","B","D","A","F","L","K"],
+    "ABDEFHIJ":["H","J","B","D","A","F","E","I"],
+    "ABDEFHIK":["H","E","B","D","A","F","I","K"],
+    "ABDEFHIL":["H","E","B","D","A","F","L","I"],
+    "ABDEFHJK":["H","J","B","D","A","F","E","K"],
+    "ABDEFHJL":["H","J","B","D","A","F","L","E"],
+    "ABDEFHKL":["H","E","B","D","A","F","L","K"],
+    "ABDEFIJK":["E","J","B","D","A","F","I","K"],
+    "ABDEFIJL":["E","J","B","D","A","F","L","I"],
+    "ABDEFIKL":["E","I","B","D","A","F","L","K"],
+    "ABDEFJKL":["E","J","B","D","A","F","L","K"],
+    "ABDEGHIJ":["H","J","B","D","A","G","E","I"],
+    "ABDEGHIK":["E","G","B","D","A","H","I","K"],
+    "ABDEGHIL":["E","G","B","D","A","H","L","I"],
+    "ABDEGHJK":["H","J","B","D","A","G","E","K"],
+    "ABDEGHJL":["H","J","B","D","A","G","L","E"],
+    "ABDEGHKL":["E","G","B","D","A","H","L","K"],
+    "ABDEGIJK":["E","J","B","D","A","G","I","K"],
+    "ABDEGIJL":["E","J","B","D","A","G","L","I"],
+    "ABDEGIKL":["E","G","B","A","I","D","L","K"],
+    "ABDEGJKL":["E","J","B","D","A","G","L","K"],
+    "ABDEHIJK":["E","J","B","D","A","H","I","K"],
+    "ABDEHIJL":["E","J","B","D","A","H","L","I"],
+    "ABDEHIKL":["E","I","B","D","A","H","L","K"],
+    "ABDEHJKL":["E","J","B","D","A","H","L","K"],
+    "ABDEIJKL":["E","J","B","A","I","D","L","K"],
+    "ABDFGHIJ":["H","G","B","D","A","F","I","J"],
+    "ABDFGHIK":["H","G","B","D","A","F","I","K"],
+    "ABDFGHIL":["H","G","B","D","A","F","L","I"],
+    "ABDFGHJK":["H","G","B","D","A","F","J","K"],
+    "ABDFGHJL":["H","G","B","D","A","F","L","J"],
+    "ABDFGHKL":["H","G","B","D","A","F","L","K"],
+    "ABDFGIJK":["F","J","B","D","A","G","I","K"],
+    "ABDFGIJL":["F","J","B","D","A","G","L","I"],
+    "ABDFGIKL":["I","G","B","D","A","F","L","K"],
+    "ABDFGJKL":["F","J","B","D","A","G","L","K"],
+    "ABDFHIJK":["H","J","B","D","A","F","I","K"],
+    "ABDFHIJL":["H","J","B","D","A","F","L","I"],
+    "ABDFHIKL":["H","I","B","D","A","F","L","K"],
+    "ABDFHJKL":["H","J","B","D","A","F","L","K"],
+    "ABDFIJKL":["I","J","B","D","A","F","L","K"],
+    "ABDGHIJK":["H","J","B","D","A","G","I","K"],
+    "ABDGHIJL":["H","J","B","D","A","G","L","I"],
+    "ABDGHIKL":["I","G","B","D","A","H","L","K"],
+    "ABDGHJKL":["H","J","B","D","A","G","L","K"],
+    "ABDGIJKL":["I","J","B","D","A","G","L","K"],
+    "ABDHIJKL":["I","J","B","D","A","H","L","K"],
+    "ABEFGHIJ":["H","J","B","F","A","G","E","I"],
+    "ABEFGHIK":["E","G","B","F","A","H","I","K"],
+    "ABEFGHIL":["E","G","B","F","A","H","L","I"],
+    "ABEFGHJK":["H","J","B","F","A","G","E","K"],
+    "ABEFGHJL":["H","J","B","F","A","G","L","E"],
+    "ABEFGHKL":["E","G","B","F","A","H","L","K"],
+    "ABEFGIJK":["E","J","B","F","A","G","I","K"],
+    "ABEFGIJL":["E","J","B","F","A","G","L","I"],
+    "ABEFGIKL":["E","G","B","A","I","F","L","K"],
+    "ABEFGJKL":["E","J","B","F","A","G","L","K"],
+    "ABEFHIJK":["E","J","B","F","A","H","I","K"],
+    "ABEFHIJL":["E","J","B","F","A","H","L","I"],
+    "ABEFHIKL":["E","I","B","F","A","H","L","K"],
+    "ABEFHJKL":["E","J","B","F","A","H","L","K"],
+    "ABEFIJKL":["E","J","B","A","I","F","L","K"],
+    "ABEGHIJK":["E","J","B","A","H","G","I","K"],
+    "ABEGHIJL":["E","J","B","A","H","G","L","I"],
+    "ABEGHIKL":["E","G","B","A","I","H","L","K"],
+    "ABEGHJKL":["E","J","B","A","H","G","L","K"],
+    "ABEGIJKL":["E","J","B","A","I","G","L","K"],
+    "ABEHIJKL":["E","J","B","A","I","H","L","K"],
+    "ABFGHIJK":["H","J","B","F","A","G","I","K"],
+    "ABFGHIJL":["H","J","B","F","A","G","L","I"],
+    "ABFGHIKL":["H","G","B","A","I","F","L","K"],
+    "ABFGHJKL":["H","J","B","F","A","G","L","K"],
+    "ABFGIJKL":["I","J","B","F","A","G","L","K"],
+    "ABFHIJKL":["H","J","B","A","I","F","L","K"],
+    "ABGHIJKL":["H","J","B","A","I","G","L","K"],
+    "ACDEFGHI":["H","G","E","C","A","F","D","I"],
+    "ACDEFGHJ":["H","G","J","C","A","F","D","E"],
+    "ACDEFGHK":["H","G","E","C","A","F","D","K"],
+    "ACDEFGHL":["H","G","F","C","A","D","L","E"],
+    "ACDEFGIJ":["C","G","J","D","A","F","E","I"],
+    "ACDEFGIK":["C","G","E","D","A","F","I","K"],
+    "ACDEFGIL":["C","G","E","D","A","F","L","I"],
+    "ACDEFGJK":["C","G","J","D","A","F","E","K"],
+    "ACDEFGJL":["C","G","J","D","A","F","L","E"],
+    "ACDEFGKL":["C","G","E","D","A","F","L","K"],
+    "ACDEFHIJ":["H","J","E","C","A","F","D","I"],
+    "ACDEFHIK":["H","E","F","C","A","D","I","K"],
+    "ACDEFHIL":["H","E","F","C","A","D","L","I"],
+    "ACDEFHJK":["H","J","E","C","A","F","D","K"],
+    "ACDEFHJL":["H","J","F","C","A","D","L","E"],
+    "ACDEFHKL":["H","E","F","C","A","D","L","K"],
+    "ACDEFIJK":["C","J","E","D","A","F","I","K"],
+    "ACDEFIJL":["C","J","E","D","A","F","L","I"],
+    "ACDEFIKL":["C","E","I","D","A","F","L","K"],
+    "ACDEFJKL":["C","J","E","D","A","F","L","K"],
+    "ACDEGHIJ":["H","G","J","C","A","D","E","I"],
+    "ACDEGHIK":["H","G","E","C","A","D","I","K"],
+    "ACDEGHIL":["H","G","E","C","A","D","L","I"],
+    "ACDEGHJK":["H","G","J","C","A","D","E","K"],
+    "ACDEGHJL":["H","G","J","C","A","D","L","E"],
+    "ACDEGHKL":["H","G","E","C","A","D","L","K"],
+    "ACDEGIJK":["E","G","J","C","A","D","I","K"],
+    "ACDEGIJL":["E","G","J","C","A","D","L","I"],
+    "ACDEGIKL":["E","G","I","C","A","D","L","K"],
+    "ACDEGJKL":["E","G","J","C","A","D","L","K"],
+    "ACDEHIJK":["H","J","E","C","A","D","I","K"],
+    "ACDEHIJL":["H","J","E","C","A","D","L","I"],
+    "ACDEHIKL":["H","E","I","C","A","D","L","K"],
+    "ACDEHJKL":["H","J","E","C","A","D","L","K"],
+    "ACDEIJKL":["E","J","I","C","A","D","L","K"],
+    "ACDFGHIJ":["H","G","J","C","A","F","D","I"],
+    "ACDFGHIK":["H","G","F","C","A","D","I","K"],
+    "ACDFGHIL":["H","G","F","C","A","D","L","I"],
+    "ACDFGHJK":["H","G","J","C","A","F","D","K"],
+    "ACDFGHJL":["C","G","J","D","A","F","L","H"],
+    "ACDFGHKL":["H","G","F","C","A","D","L","K"],
+    "ACDFGIJK":["C","G","J","D","A","F","I","K"],
+    "ACDFGIJL":["C","G","J","D","A","F","L","I"],
+    "ACDFGIKL":["C","G","I","D","A","F","L","K"],
+    "ACDFGJKL":["C","G","J","D","A","F","L","K"],
+    "ACDFHIJK":["H","J","F","C","A","D","I","K"],
+    "ACDFHIJL":["H","J","F","C","A","D","L","I"],
+    "ACDFHIKL":["H","F","I","C","A","D","L","K"],
+    "ACDFHJKL":["H","J","F","C","A","D","L","K"],
+    "ACDFIJKL":["C","J","I","D","A","F","L","K"],
+    "ACDGHIJK":["H","G","J","C","A","D","I","K"],
+    "ACDGHIJL":["H","G","J","C","A","D","L","I"],
+    "ACDGHIKL":["H","G","I","C","A","D","L","K"],
+    "ACDGHJKL":["H","G","J","C","A","D","L","K"],
+    "ACDGIJKL":["I","G","J","C","A","D","L","K"],
+    "ACDHIJKL":["H","J","I","C","A","D","L","K"],
+    "ACEFGHIJ":["H","G","J","C","A","F","E","I"],
+    "ACEFGHIK":["H","G","E","C","A","F","I","K"],
+    "ACEFGHIL":["H","G","E","C","A","F","L","I"],
+    "ACEFGHJK":["H","G","J","C","A","F","E","K"],
+    "ACEFGHJL":["H","G","J","C","A","F","L","E"],
+    "ACEFGHKL":["H","G","E","C","A","F","L","K"],
+    "ACEFGIJK":["E","G","J","C","A","F","I","K"],
+    "ACEFGIJL":["E","G","J","C","A","F","L","I"],
+    "ACEFGIKL":["E","G","I","C","A","F","L","K"],
+    "ACEFGJKL":["E","G","J","C","A","F","L","K"],
+    "ACEFHIJK":["H","J","E","C","A","F","I","K"],
+    "ACEFHIJL":["H","J","E","C","A","F","L","I"],
+    "ACEFHIKL":["H","E","I","C","A","F","L","K"],
+    "ACEFHJKL":["H","J","E","C","A","F","L","K"],
+    "ACEFIJKL":["E","J","I","C","A","F","L","K"],
+    "ACEGHIJK":["E","G","J","C","A","H","I","K"],
+    "ACEGHIJL":["E","G","J","C","A","H","L","I"],
+    "ACEGHIKL":["E","G","I","C","A","H","L","K"],
+    "ACEGHJKL":["E","G","J","C","A","H","L","K"],
+    "ACEGIJKL":["E","J","I","C","A","G","L","K"],
+    "ACEHIJKL":["E","J","I","C","A","H","L","K"],
+    "ACFGHIJK":["H","G","J","C","A","F","I","K"],
+    "ACFGHIJL":["H","G","J","C","A","F","L","I"],
+    "ACFGHIKL":["H","G","I","C","A","F","L","K"],
+    "ACFGHJKL":["H","G","J","C","A","F","L","K"],
+    "ACFGIJKL":["I","G","J","C","A","F","L","K"],
+    "ACFHIJKL":["H","J","I","C","A","F","L","K"],
+    "ACGHIJKL":["H","J","I","C","A","G","L","K"],
+    "ADEFGHIJ":["H","G","J","D","A","F","E","I"],
+    "ADEFGHIK":["H","G","E","D","A","F","I","K"],
+    "ADEFGHIL":["H","G","E","D","A","F","L","I"],
+    "ADEFGHJK":["H","G","J","D","A","F","E","K"],
+    "ADEFGHJL":["H","G","J","D","A","F","L","E"],
+    "ADEFGHKL":["H","G","E","D","A","F","L","K"],
+    "ADEFGIJK":["E","G","J","D","A","F","I","K"],
+    "ADEFGIJL":["E","G","J","D","A","F","L","I"],
+    "ADEFGIKL":["E","G","I","D","A","F","L","K"],
+    "ADEFGJKL":["E","G","J","D","A","F","L","K"],
+    "ADEFHIJK":["H","J","E","D","A","F","I","K"],
+    "ADEFHIJL":["H","J","E","D","A","F","L","I"],
+    "ADEFHIKL":["H","E","I","D","A","F","L","K"],
+    "ADEFHJKL":["H","J","E","D","A","F","L","K"],
+    "ADEFIJKL":["E","J","I","D","A","F","L","K"],
+    "ADEGHIJK":["E","G","J","D","A","H","I","K"],
+    "ADEGHIJL":["E","G","J","D","A","H","L","I"],
+    "ADEGHIKL":["E","G","I","D","A","H","L","K"],
+    "ADEGHJKL":["E","G","J","D","A","H","L","K"],
+    "ADEGIJKL":["E","J","I","D","A","G","L","K"],
+    "ADEHIJKL":["E","J","I","D","A","H","L","K"],
+    "ADFGHIJK":["H","G","J","D","A","F","I","K"],
+    "ADFGHIJL":["H","G","J","D","A","F","L","I"],
+    "ADFGHIKL":["H","G","I","D","A","F","L","K"],
+    "ADFGHJKL":["H","G","J","D","A","F","L","K"],
+    "ADFGIJKL":["I","G","J","D","A","F","L","K"],
+    "ADFHIJKL":["H","J","I","D","A","F","L","K"],
+    "ADGHIJKL":["H","J","I","D","A","G","L","K"],
+    "AEFGHIJK":["E","G","J","F","A","H","I","K"],
+    "AEFGHIJL":["E","G","J","F","A","H","L","I"],
+    "AEFGHIKL":["E","G","I","F","A","H","L","K"],
+    "AEFGHJKL":["E","G","J","F","A","H","L","K"],
+    "AEFGIJKL":["E","J","I","F","A","G","L","K"],
+    "AEFHIJKL":["E","J","I","F","A","H","L","K"],
+    "AEGHIJKL":["E","J","I","A","H","G","L","K"],
+    "AFGHIJKL":["H","J","I","F","A","G","L","K"],
+    "BCDEFGHI":["C","G","B","D","H","F","E","I"],
+    "BCDEFGHJ":["H","G","B","C","J","F","D","E"],
+    "BCDEFGHK":["C","G","B","D","H","F","E","K"],
+    "BCDEFGHL":["C","G","B","D","H","F","L","E"],
+    "BCDEFGIJ":["C","G","B","D","J","F","E","I"],
+    "BCDEFGIK":["C","G","B","D","E","F","I","K"],
+    "BCDEFGIL":["C","G","B","D","E","F","L","I"],
+    "BCDEFGJK":["C","G","B","D","J","F","E","K"],
+    "BCDEFGJL":["C","G","B","D","J","F","L","E"],
+    "BCDEFGKL":["C","G","B","D","E","F","L","K"],
+    "BCDEFHIJ":["C","J","B","D","H","F","E","I"],
+    "BCDEFHIK":["C","E","B","D","H","F","I","K"],
+    "BCDEFHIL":["C","E","B","D","H","F","L","I"],
+    "BCDEFHJK":["C","J","B","D","H","F","E","K"],
+    "BCDEFHJL":["C","J","B","D","H","F","L","E"],
+    "BCDEFHKL":["C","E","B","D","H","F","L","K"],
+    "BCDEFIJK":["C","J","B","D","E","F","I","K"],
+    "BCDEFIJL":["C","J","B","D","E","F","L","I"],
+    "BCDEFIKL":["C","E","B","D","I","F","L","K"],
+    "BCDEFJKL":["C","J","B","D","E","F","L","K"],
+    "BCDEGHIJ":["H","G","B","C","J","D","E","I"],
+    "BCDEGHIK":["E","G","B","C","H","D","I","K"],
+    "BCDEGHIL":["E","G","B","C","H","D","L","I"],
+    "BCDEGHJK":["H","G","B","C","J","D","E","K"],
+    "BCDEGHJL":["H","G","B","C","J","D","L","E"],
+    "BCDEGHKL":["E","G","B","C","H","D","L","K"],
+    "BCDEGIJK":["E","G","B","C","J","D","I","K"],
+    "BCDEGIJL":["E","G","B","C","J","D","L","I"],
+    "BCDEGIKL":["E","G","B","C","I","D","L","K"],
+    "BCDEGJKL":["E","G","B","C","J","D","L","K"],
+    "BCDEHIJK":["E","J","B","C","H","D","I","K"],
+    "BCDEHIJL":["E","J","B","C","H","D","L","I"],
+    "BCDEHIKL":["E","I","B","C","H","D","L","K"],
+    "BCDEHJKL":["E","J","B","C","H","D","L","K"],
+    "BCDEIJKL":["E","J","B","C","I","D","L","K"],
+    "BCDFGHIJ":["H","G","B","C","J","F","D","I"],
+    "BCDFGHIK":["C","G","B","D","H","F","I","K"],
+    "BCDFGHIL":["C","G","B","D","H","F","L","I"],
+    "BCDFGHJK":["H","G","B","C","J","F","D","K"],
+    "BCDFGHJL":["C","G","B","D","H","F","L","J"],
+    "BCDFGHKL":["C","G","B","D","H","F","L","K"],
+    "BCDFGIJK":["C","G","B","D","J","F","I","K"],
+    "BCDFGIJL":["C","G","B","D","J","F","L","I"],
+    "BCDFGIKL":["C","G","B","D","I","F","L","K"],
+    "BCDFGJKL":["C","G","B","D","J","F","L","K"],
+    "BCDFHIJK":["C","J","B","D","H","F","I","K"],
+    "BCDFHIJL":["C","J","B","D","H","F","L","I"],
+    "BCDFHIKL":["C","I","B","D","H","F","L","K"],
+    "BCDFHJKL":["C","J","B","D","H","F","L","K"],
+    "BCDFIJKL":["C","J","B","D","I","F","L","K"],
+    "BCDGHIJK":["H","G","B","C","J","D","I","K"],
+    "BCDGHIJL":["H","G","B","C","J","D","L","I"],
+    "BCDGHIKL":["H","G","B","C","I","D","L","K"],
+    "BCDGHJKL":["H","G","B","C","J","D","L","K"],
+    "BCDGIJKL":["I","G","B","C","J","D","L","K"],
+    "BCDHIJKL":["H","J","B","C","I","D","L","K"],
+    "BCEFGHIJ":["H","G","B","C","J","F","E","I"],
+    "BCEFGHIK":["E","G","B","C","H","F","I","K"],
+    "BCEFGHIL":["E","G","B","C","H","F","L","I"],
+    "BCEFGHJK":["H","G","B","C","J","F","E","K"],
+    "BCEFGHJL":["H","G","B","C","J","F","L","E"],
+    "BCEFGHKL":["E","G","B","C","H","F","L","K"],
+    "BCEFGIJK":["E","G","B","C","J","F","I","K"],
+    "BCEFGIJL":["E","G","B","C","J","F","L","I"],
+    "BCEFGIKL":["E","G","B","C","I","F","L","K"],
+    "BCEFGJKL":["E","G","B","C","J","F","L","K"],
+    "BCEFHIJK":["E","J","B","C","H","F","I","K"],
+    "BCEFHIJL":["E","J","B","C","H","F","L","I"],
+    "BCEFHIKL":["E","I","B","C","H","F","L","K"],
+    "BCEFHJKL":["E","J","B","C","H","F","L","K"],
+    "BCEFIJKL":["E","J","B","C","I","F","L","K"],
+    "BCEGHIJK":["E","J","B","C","H","G","I","K"],
+    "BCEGHIJL":["E","J","B","C","H","G","L","I"],
+    "BCEGHIKL":["E","G","B","C","I","H","L","K"],
+    "BCEGHJKL":["E","J","B","C","H","G","L","K"],
+    "BCEGIJKL":["E","J","B","C","I","G","L","K"],
+    "BCEHIJKL":["E","J","B","C","I","H","L","K"],
+    "BCFGHIJK":["H","G","B","C","J","F","I","K"],
+    "BCFGHIJL":["H","G","B","C","J","F","L","I"],
+    "BCFGHIKL":["H","G","B","C","I","F","L","K"],
+    "BCFGHJKL":["H","G","B","C","J","F","L","K"],
+    "BCFGIJKL":["I","G","B","C","J","F","L","K"],
+    "BCFHIJKL":["H","J","B","C","I","F","L","K"],
+    "BCGHIJKL":["H","J","B","C","I","G","L","K"],
+    "BDEFGHIJ":["H","G","B","D","J","F","E","I"],
+    "BDEFGHIK":["E","G","B","D","H","F","I","K"],
+    "BDEFGHIL":["E","G","B","D","H","F","L","I"],
+    "BDEFGHJK":["H","G","B","D","J","F","E","K"],
+    "BDEFGHJL":["H","G","B","D","J","F","L","E"],
+    "BDEFGHKL":["E","G","B","D","H","F","L","K"],
+    "BDEFGIJK":["E","G","B","D","J","F","I","K"],
+    "BDEFGIJL":["E","G","B","D","J","F","L","I"],
+    "BDEFGIKL":["E","G","B","D","I","F","L","K"],
+    "BDEFGJKL":["E","G","B","D","J","F","L","K"],
+    "BDEFHIJK":["E","J","B","D","H","F","I","K"],
+    "BDEFHIJL":["E","J","B","D","H","F","L","I"],
+    "BDEFHIKL":["E","I","B","D","H","F","L","K"],
+    "BDEFHJKL":["E","J","B","D","H","F","L","K"],
+    "BDEFIJKL":["E","J","B","D","I","F","L","K"],
+    "BDEGHIJK":["E","J","B","D","H","G","I","K"],
+    "BDEGHIJL":["E","J","B","D","H","G","L","I"],
+    "BDEGHIKL":["E","G","B","D","I","H","L","K"],
+    "BDEGHJKL":["E","J","B","D","H","G","L","K"],
+    "BDEGIJKL":["E","J","B","D","I","G","L","K"],
+    "BDEHIJKL":["E","J","B","D","I","H","L","K"],
+    "BDFGHIJK":["H","G","B","D","J","F","I","K"],
+    "BDFGHIJL":["H","G","B","D","J","F","L","I"],
+    "BDFGHIKL":["H","G","B","D","I","F","L","K"],
+    "BDFGHJKL":["H","G","B","D","J","F","L","K"],
+    "BDFGIJKL":["I","G","B","D","J","F","L","K"],
+    "BDFHIJKL":["H","J","B","D","I","F","L","K"],
+    "BDGHIJKL":["H","J","B","D","I","G","L","K"],
+    "BEFGHIJK":["E","J","B","F","H","G","I","K"],
+    "BEFGHIJL":["E","J","B","F","H","G","L","I"],
+    "BEFGHIKL":["E","G","B","F","I","H","L","K"],
+    "BEFGHJKL":["E","J","B","F","H","G","L","K"],
+    "BEFGIJKL":["E","J","B","F","I","G","L","K"],
+    "BEFHIJKL":["E","J","B","F","I","H","L","K"],
+    "BEGHIJKL":["E","J","I","B","H","G","L","K"],
+    "BFGHIJKL":["H","J","B","F","I","G","L","K"],
+    "CDEFGHIJ":["C","G","J","D","H","F","E","I"],
+    "CDEFGHIK":["C","G","E","D","H","F","I","K"],
+    "CDEFGHIL":["C","G","E","D","H","F","L","I"],
+    "CDEFGHJK":["C","G","J","D","H","F","E","K"],
+    "CDEFGHJL":["C","G","J","D","H","F","L","E"],
+    "CDEFGHKL":["C","G","E","D","H","F","L","K"],
+    "CDEFGIJK":["C","G","E","D","J","F","I","K"],
+    "CDEFGIJL":["C","G","E","D","J","F","L","I"],
+    "CDEFGIKL":["C","G","E","D","I","F","L","K"],
+    "CDEFGJKL":["C","G","E","D","J","F","L","K"],
+    "CDEFHIJK":["C","J","E","D","H","F","I","K"],
+    "CDEFHIJL":["C","J","E","D","H","F","L","I"],
+    "CDEFHIKL":["C","E","I","D","H","F","L","K"],
+    "CDEFHJKL":["C","J","E","D","H","F","L","K"],
+    "CDEFIJKL":["C","J","E","D","I","F","L","K"],
+    "CDEGHIJK":["E","G","J","C","H","D","I","K"],
+    "CDEGHIJL":["E","G","J","C","H","D","L","I"],
+    "CDEGHIKL":["E","G","I","C","H","D","L","K"],
+    "CDEGHJKL":["E","G","J","C","H","D","L","K"],
+    "CDEGIJKL":["E","G","I","C","J","D","L","K"],
+    "CDEHIJKL":["E","J","I","C","H","D","L","K"],
+    "CDFGHIJK":["C","G","J","D","H","F","I","K"],
+    "CDFGHIJL":["C","G","J","D","H","F","L","I"],
+    "CDFGHIKL":["C","G","I","D","H","F","L","K"],
+    "CDFGHJKL":["C","G","J","D","H","F","L","K"],
+    "CDFGIJKL":["C","G","I","D","J","F","L","K"],
+    "CDFHIJKL":["C","J","I","D","H","F","L","K"],
+    "CDGHIJKL":["H","G","I","C","J","D","L","K"],
+    "CEFGHIJK":["E","G","J","C","H","F","I","K"],
+    "CEFGHIJL":["E","G","J","C","H","F","L","I"],
+    "CEFGHIKL":["E","G","I","C","H","F","L","K"],
+    "CEFGHJKL":["E","G","J","C","H","F","L","K"],
+    "CEFGIJKL":["E","G","I","C","J","F","L","K"],
+    "CEFHIJKL":["E","J","I","C","H","F","L","K"],
+    "CEGHIJKL":["E","J","I","C","H","G","L","K"],
+    "CFGHIJKL":["H","G","I","C","J","F","L","K"],
+    "DEFGHIJK":["E","G","J","D","H","F","I","K"],
+    "DEFGHIJL":["E","G","J","D","H","F","L","I"],
+    "DEFGHIKL":["E","G","I","D","H","F","L","K"],
+    "DEFGHJKL":["E","G","J","D","H","F","L","K"],
+    "DEFGIJKL":["E","G","I","D","J","F","L","K"],
+    "DEFHIJKL":["E","J","I","D","H","F","L","K"],
+    "DEGHIJKL":["E","J","I","D","H","G","L","K"],
+    "DFGHIJKL":["H","G","I","D","J","F","L","K"],
+    "EFGHIJKL":["E","J","I","F","H","G","L","K"]
+  };
+  const SLOT_NAMES=["3CEFHI","3EFGIJ","3BEFIJ","3ABCDF","3AEHIJ","3CDFGH","3DEIJL","3EHIJK"];
+  const key=[...best8].map(t=>t.group).sort().join("");
+  const row=T[key];
+  const result={};
+  if(row){
+    SLOT_NAMES.forEach((s,i)=>{result[s]=row[i]||null;});
+  } else {
+    // Fallback backtracking for unknown combinations
+    const slots=[["3CEFHI","CEFHI"],["3EFGIJ","EFGIJ"],["3BEFIJ","BEFIJ"],["3ABCDF","ABCDF"],["3AEHIJ","AEHIJ"],["3CDFGH","CDFGH"],["3DEIJL","DEIJL"],["3EHIJK","EHIJK"]];
+    const ranked=[...best8].sort((a,b)=>b.pts!==a.pts?b.pts-a.pts:b.gd!==a.gd?b.gd-a.gd:b.gf-a.gf);
+    const used=new Set();
+    function bt(si){
+      if(si===slots.length)return true;
+      const[sn,el]=slots[si];
+      for(const t of ranked){if(el.includes(t.group)&&!used.has(t.group)){result[sn]=t.group;used.add(t.group);if(bt(si+1))return true;delete result[sn];used.delete(t.group);}}
+      for(const t of ranked){if(!used.has(t.group)){result[sn]=t.group;used.add(t.group);if(bt(si+1))return true;delete result[sn];used.delete(t.group);}}
+      result[sn]=null;return bt(si+1);
+    }
+    bt(0);
   }
-  if (pos === '3') {
-    // best 3rd from groups listed
-    return null; // handled separately
+  return result;
+}
+
+function resolveSlot(slot,standings,best8){
+  if(!slot)return null;
+  if(slot.startsWith("1")){const st=standings[slot[1]];return st&&st[0]?st[0][0]:null;}
+  if(slot.startsWith("2")){const st=standings[slot[1]];return st&&st[1]?st[1][0]:null;}
+  if(slot.startsWith("3")){
+    const assignment=assignThirds(best8); // pass full objects with pts/gd/gf
+    const g=assignment[slot];
+    if(!g)return null;
+    const t=best8.find(x=>x.group===g);return t?t.name:null;
   }
   return null;
 }
 
-function getUserBracketTeam(matchId, userBracket) {
-  return (userBracket || {})[matchId] || null;
+
+function getBracketTeams2(r, i, predData, standings, best8){
+  if(r==="r16f"){
+    const match=R32_FIXED[i];
+    return{a:resolveSlot(match.a,standings,best8), b:resolveSlot(match.b,standings,best8)};
+  }
+  const prev=r==="r16"?"r16f":r==="qf"?"r16":r==="sf"?"qf":"sf";
+  const sA=(predData[prev]&&predData[prev][i*2])||{};
+  const sB=(predData[prev]&&predData[prev][i*2+1])||{};
+  return{a:sA.winner||null, b:sB.winner||null};
 }
 
-function renderBracket() {
+let modCb2=null;
+function openMod2(title,opts,cb){
+  document.getElementById("mtit").textContent=title;
+  const ml=document.getElementById("ml");
+  ml.innerHTML=opts.map((t,i)=>'<div class="mi" data-idx="'+i+'">'+fi2(getCode(t))+"<span>"+t+"</span></div>").join("");
+  ml.querySelectorAll(".mi").forEach((el,i)=>{
+    el.addEventListener("click",()=>{closeMod();if(modCb2)modCb2(opts[i]);});
+  });
+  modCb2=cb;
+  document.getElementById("mov").classList.add("open");
+}
+window.closeMod=()=>document.getElementById("mov").classList.remove("open");
+
+function renderBracket(){
   const open = gameState.phases.elim;
-  document.getElementById('brAlerts').innerHTML = open
-    ? '<div class="al al-g">Predicciones abiertas. Haz clic en el equipo que crees que avanza.</div><div class="al al-a">16avos=3pts · 8avos=4pts · Cuartos=5pts · Semis=6pts · 3er puesto=6pts · Final=10pts · Marcador exacto=+10pts</div>'
-    : '<div class="al al-r">⚠ Las eliminatorias aún no están abiertas.</div>';
+  const lnote = document.getElementById("lnote-b");
+  if(lnote){lnote.textContent=open?"Predicciones abiertas. Toca para avanzar equipos.":"Eliminatorias CERRADAS. Ya no puedes modificar predicciones.";lnote.className="note"+(open?"":" red");}
 
-  const content = document.getElementById('brContent');
-  content.innerHTML = '';
+  const data = currentUser.bracket || {};
+  const gruposPartidos = gameState.results.gruposPartidos || {};
+  const standings = calcStandings2(gruposPartidos);
+  const best8 = getBest8Thirds2(standings);
 
-  // Build bracket tree
-  const wrap = document.createElement('div');
-  wrap.className = 'bk-wrap';
-  const tree = document.createElement('div');
-  tree.className = 'bk-tree';
-  wrap.appendChild(tree);
-  content.appendChild(wrap);
+  const listeners=[];
+  let html="";
 
-  // Get user bracket state
-  const ub = currentUser.bracket || {};
-  const rg = gameState.results.grupos || {};
-  const ug = currentUser.groups || {};
+  RIDS.forEach((r,ri)=>{
+    const n=RSLOTS[ri];
+    html+='<div class="rd"><div class="rdtit">'+RLBLS[ri]+'</div><div class="rd-matches">';
+    for(let i=0;i<n;i++){
+      const saved=(data[r]&&data[r][i])||{};
+      const winner=saved.winner||null;
+      const {a:tA,b:tB}=getBracketTeams2(r,i,data,standings,best8);
+      const canPick=open&&tA&&tB&&!winner;
+      const wA=winner&&winner===tA, wB=winner&&winner===tB;
+      const canCorr=open&&winner;
+      const idA="bs_"+r+"_"+i+"_a", idB="bs_"+r+"_"+i+"_b";
 
-  // Resolve team from user groups prediction
-  function resolveTeam(code) {
-    if (!code) return null;
-    if (code.startsWith('W_')) {
-      // Winner of a previous match
-      const prevId = code.slice(2);
-      return ub[prevId] || null;
-    }
-    const pos = code[0];
-    const grp = code.slice(1);
-    if (pos === '1' || pos === '2') {
-      const src = Object.keys(rg[grp] || {}).length ? rg[grp] : (ug[grp] || {});
-      const team = Object.keys(src).find(t => {
-        const v = src[t]; 
-        return (v && (v.pos === pos || v === pos));
-      });
-      return team || null;
-    }
-    return null;
-  }
+      const fa=tA?fi2(getCode(tA))+"<span>"+tA+"</span>":'<span style="color:var(--muted);font-size:11px">'+(r==="r16f"?"Por definir":"—")+"</span>";
+      const fb=tB?fi2(getCode(tB))+"<span>"+tB+"</span>":'<span style="color:var(--muted);font-size:11px">'+(r==="r16f"?"Por definir":"—")+"</span>";
 
-  // Build matches per round
-  const rounds = [
-    {
-      id: 'r16', name: '16AVOS', pts: 3,
-      matches: Array.from({length:16}, (_,i) => ({
-        id: 'r16_' + i,
-        t1: resolveTeam(R16_MATCHUPS[i] ? R16_MATCHUPS[i].home : null),
-        t2: resolveTeam(R16_MATCHUPS[i] ? R16_MATCHUPS[i].away : null),
-      }))
-    },
-    {
-      id: 'r8', name: '8AVOS', pts: 4,
-      matches: Array.from({length:8}, (_,i) => ({
-        id: 'r8_' + i,
-        t1: ub['r16_' + (i*2)] || null,
-        t2: ub['r16_' + (i*2+1)] || null,
-      }))
-    },
-    {
-      id: 'qf', name: 'CUARTOS', pts: 5,
-      matches: Array.from({length:4}, (_,i) => ({
-        id: 'qf_' + i,
-        t1: ub['r8_' + (i*2)] || null,
-        t2: ub['r8_' + (i*2+1)] || null,
-      }))
-    },
-    {
-      id: 'sf', name: 'SEMIS', pts: 6,
-      matches: Array.from({length:2}, (_,i) => ({
-        id: 'sf_' + i,
-        t1: ub['qf_' + (i*2)] || null,
-        t2: ub['qf_' + (i*2+1)] || null,
-      }))
-    },
-    {
-      id: 'fin', name: 'FINAL', pts: 10,
-      matches: [{
-        id: 'fin_0',
-        t1: ub['sf_0'] || null,
-        t2: ub['sf_1'] || null,
-      }]
-    }
-  ];
+      html+='<div class="bm2">'
+        +'<div id="'+idA+'" class="bt'+(canPick?" cl":"")+(wA?" win":winner&&tA&&!wA?" los":"")+'">'+fa+'</div>'
+        +'<div id="'+idB+'" class="bt'+(canPick?" cl":"")+(wB?" win":winner&&tB&&!wB?" los":"")+'">'+fb+'</div>'
+        +(canCorr?'<div class="bt-corr"><button id="bc_'+r+'_'+i+'">corregir</button></div>':"")
+        +'</div>';
 
-  rounds.forEach(round => {
-    const col = document.createElement('div');
-    col.className = 'bk-col';
-    const hdr = document.createElement('div');
-    hdr.className = 'bk-col-hdr';
-    hdr.innerHTML = round.name + '<span>' + round.pts + ' PTS</span>';
-    col.appendChild(hdr);
-    const slots = document.createElement('div');
-    slots.className = 'bk-slots';
-
-    round.matches.forEach(match => {
-      const winner = ub[match.id] || null;
-      const matchDiv = document.createElement('div');
-      matchDiv.className = 'bk-match';
-      const inner = document.createElement('div');
-      inner.className = 'bk-match-inner';
-
-      [match.t1, match.t2].forEach((team, ti) => {
-        const btn = document.createElement('div');
-        if (!team) {
-          btn.className = 'bk-team bk-tbd';
-          btn.innerHTML = '<span class="bk-team-name">Por definir</span>';
-        } else {
-          let cls = 'bk-team';
-          if (winner === team) cls += ' bk-win';
-          else if (winner && winner !== team) cls += ' bk-lose';
-          btn.className = cls;
-          const fimg = flagEl(team);
-          const nameSpan = document.createElement('span');
-          nameSpan.className = 'bk-team-name';
-          nameSpan.textContent = team;
-          btn.appendChild(fimg);
-          btn.appendChild(nameSpan);
-          if (open) {
-            btn.onclick = () => pickBracketWinner(match.id, team, round.id);
-          }
-        }
-        inner.appendChild(btn);
-      });
-
-      if (winner && open) {
-        const corr = document.createElement('div');
-        corr.className = 'bk-corr';
-        corr.textContent = 'corregir';
-        corr.onclick = () => clearBracketPick(match.id, round.id);
-        inner.appendChild(corr);
+      if(canPick&&tA&&tB){
+        listeners.push({id:idA, fn:()=>doPickWinner2(r,i,tA,tB,tA)});
+        listeners.push({id:idB, fn:()=>doPickWinner2(r,i,tA,tB,tB)});
       }
-
-      matchDiv.appendChild(inner);
-      slots.appendChild(matchDiv);
-    });
-
-    col.appendChild(slots);
-    tree.appendChild(col);
+      if(canCorr){
+        listeners.push({id:"bc_"+r+"_"+i, fn:(e)=>{e.stopPropagation();doClearWinner2(r,i);}});
+      }
+    }
+    html+='</div></div>';
   });
 
+  document.getElementById("bracks").innerHTML=html;
+  listeners.forEach(({id,fn})=>{const el=document.getElementById(id);if(el)el.addEventListener("click",fn);});
+
   // Champion box
-  const champ = ub['fin_0'] || null;
-  document.getElementById('champVal').innerHTML = '';
-  if (champ) {
-    const img = flagEl(champ);
-    document.getElementById('champVal').appendChild(img);
-    const sp = document.createElement('span');
-    sp.textContent = champ;
-    document.getElementById('champVal').appendChild(sp);
-  } else {
-    document.getElementById('champVal').textContent = '—';
+  const ch=data.champion;
+  const box=document.getElementById("cbox");
+  if(ch){box.style.display="block";document.getElementById("cteam").innerHTML=fi2(getCode(ch))+"<span>"+ch+"</span>";}
+  else box.style.display="none";
+
+  // Final score
+  document.getElementById("final-score-pred").style.display="block";
+  const finalSlot=(data.final&&data.final[0])||{};
+  const fsA=document.getElementById("fs-teamA-lbl");const fsB=document.getElementById("fs-teamB-lbl");
+  if(fsA)fsA.querySelector("span").textContent=finalSlot.a||"Finalista A";
+  if(fsB)fsB.querySelector("span").textContent=finalSlot.b||"Finalista B";
+  const fs=currentUser.finalScore||{};
+  const fsaEl=document.getElementById("fs-a");const fsbEl=document.getElementById("fs-b");
+  if(fsaEl)fsaEl.value=fs.a||"";if(fsbEl)fsbEl.value=fs.b||"";
+}
+
+async function doPickWinner2(r,i,tA,tB,winner){
+  if(!gameState.phases.elim){showToast("Eliminatorias cerradas");return;}
+  if(!currentUser.bracket)currentUser.bracket={};
+  if(!currentUser.bracket[r])currentUser.bracket[r]={};
+  currentUser.bracket[r][i]={a:tA,b:tB,winner};
+  // Clear downstream
+  const ri=RIDS.indexOf(r);
+  let curIdx=Math.floor(i/2);
+  for(let ni=ri+1;ni<RIDS.length;ni++){
+    if(currentUser.bracket[RIDS[ni]])delete currentUser.bracket[RIDS[ni]][curIdx];
+    curIdx=Math.floor(curIdx/2);
   }
-
-  // Final score inputs
-  const finRes = (gameState.results.elim['fin'] || {})[0] || {};
-  document.getElementById('finLblA').textContent = ub['sf_0'] || 'Equipo A';
-  document.getElementById('finLblB').textContent = ub['sf_1'] || 'Equipo B';
-  document.getElementById('finSA').value = (currentUser.finalScore || {}).a || '';
-  document.getElementById('finSB').value = (currentUser.finalScore || {}).b || '';
-}
-
-async function pickBracketWinner(matchId, team, roundId) {
-  if (!currentUser.bracket) currentUser.bracket = {};
-  const prev = currentUser.bracket[matchId];
-  if (prev === team) return;
-  currentUser.bracket[matchId] = team;
-  // Clear downstream picks that depended on this match
-  clearDownstream(matchId, roundId);
-  await saveUser(currentUser.uid, currentUser);
-  renderBracket();
-  showToast('Predicción guardada');
-}
-
-async function clearBracketPick(matchId, roundId) {
-  if (!currentUser.bracket) return;
-  delete currentUser.bracket[matchId];
-  clearDownstream(matchId, roundId);
-  await saveUser(currentUser.uid, currentUser);
-  renderBracket();
-  showToast('Predicción borrada');
-}
-
-function clearDownstream(matchId, roundId) {
-  // When a pick changes, clear all picks that depend on it in later rounds
-  const order = ['r16','r8','qf','sf','fin'];
-  const roundIdx = order.indexOf(roundId);
-  if (roundIdx === -1) return;
-  // Get the match index within the round
-  const matchNum = parseInt(matchId.split('_')[1]);
-  // Clear next round match
-  const nextRound = order[roundIdx + 1];
-  if (!nextRound) return;
-  const nextMatchNum = Math.floor(matchNum / 2);
-  const nextMatchId = nextRound + '_' + nextMatchNum;
-  if (currentUser.bracket[nextMatchId]) {
-    delete currentUser.bracket[nextMatchId];
-    clearDownstream(nextMatchId, nextRound);
+  delete currentUser.bracket.champion;
+  delete currentUser.bracket.thirdWinner;
+  // Auto-champion on final
+  if(r==="final"){currentUser.bracket.champion=winner;showToast("Campeón guardado: "+winner);}
+  // 3rd place after semis
+  if(r==="sf"){
+    const sf0=(currentUser.bracket.sf&&currentUser.bracket.sf[0])||{};
+    const sf1=(currentUser.bracket.sf&&currentUser.bracket.sf[1])||{};
+    const loser0=sf0.winner?(sf0.a===sf0.winner?sf0.b:sf0.a):null;
+    const loser1=sf1.winner?(sf1.a===sf1.winner?sf1.b:sf1.a):null;
+    if(loser0&&loser1){
+      setTimeout(()=>{
+        openMod2("Ganador del 3er puesto",[loser0,loser1],async t3=>{
+          currentUser.bracket.thirdWinner=t3;
+          await saveUser(currentUser.uid,currentUser);
+          showToast("3er puesto guardado!");
+          renderBracket();
+        });
+      },400);
+    }
   }
+  await saveUser(currentUser.uid,currentUser);
+  showToast("Guardado");
+  renderBracket();
 }
+
+async function doClearWinner2(r,i){
+  if(!gameState.phases.elim){showToast("Eliminatorias cerradas");return;}
+  if(!currentUser.bracket||!currentUser.bracket[r])return;
+  delete currentUser.bracket[r][i];
+  const ri=RIDS.indexOf(r);
+  let curIdx=Math.floor(i/2);
+  for(let ni=ri+1;ni<RIDS.length;ni++){
+    if(currentUser.bracket[RIDS[ni]])delete currentUser.bracket[RIDS[ni]][curIdx];
+    curIdx=Math.floor(curIdx/2);
+  }
+  delete currentUser.bracket.champion;delete currentUser.bracket.thirdWinner;
+  await saveUser(currentUser.uid,currentUser);
+  showToast("Corregido");renderBracket();
+}
+
+window.saveFinalScore = async function(){
+  if(!gameState.phases.elim){showToast("Eliminatorias cerradas");return;}
+  const a=document.getElementById("fs-a").value,b=document.getElementById("fs-b").value;
+  if(a===""||b===""){showToast("Introduce ambos goles");return;}
+  currentUser.finalScore={a:parseInt(a),b:parseInt(b)};
+  await saveUser(currentUser.uid,currentUser);
+  showToast("Marcador final guardado");
+};
 
 // ── RESULTADOS ──
 function renderResultados() {
