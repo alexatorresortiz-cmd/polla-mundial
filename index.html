@@ -1661,22 +1661,37 @@ function renderAdmin(){
     });
     ag.appendChild(box);
   });
-  // R16
+  // R16 - auto-fill from group standings
   const r16=document.getElementById('admR16');r16.innerHTML='';
+  const r16Standings=calcStandings2(gameState.results.gruposPartidos||{});
+  const r16Best8=getBest8Thirds2(r16Standings);
+  // Auto-save teams to Firebase if not already saved
   for(let i=0;i<16;i++){
     const res=(gameState.results.elim.r16f||{})[i]||{};
-    const t1v=res.t1||'',t2v=res.t2||'',w=res.winner||'';
+    const autoT1=resolveSlot(R32_FIXED[i].a,r16Standings,r16Best8)||'';
+    const autoT2=resolveSlot(R32_FIXED[i].b,r16Standings,r16Best8)||'';
+    const t1v=res.t1||autoT1;
+    const t2v=res.t2||autoT2;
+    const w=res.winner||'';
+    // Auto-save if we resolved teams and they're not saved yet
+    if(autoT1&&autoT2&&(!res.t1||!res.t2)){
+      adminSetTeam('r16f',i,'t1',autoT1);
+      adminSetTeam('r16f',i,'t2',autoT2);
+    }
     const d=document.createElement('div');d.style.marginBottom='10px';
-    const lbl=document.createElement('div');lbl.style.cssText='font-size:10px;color:var(--muted);font-weight:600;margin-bottom:5px;';lbl.textContent='P'+(i+1)+' — '+R32_FIXED[i].label+': '+R32_FIXED[i].a+' vs '+R32_FIXED[i].b;
+    const lbl=document.createElement('div');lbl.style.cssText='font-size:10px;color:var(--muted);font-weight:600;margin-bottom:5px;';
+    lbl.textContent='P'+(i+1)+' — '+R32_FIXED[i].a+' vs '+R32_FIXED[i].b+(t1v&&t2v?' → '+t1v+' vs '+t2v:'');
     const row=document.createElement('div');row.style.cssText='display:flex;gap:6px;align-items:center;';
-    const i1=document.createElement('input');i1.className='adm-inp';i1.placeholder='Equipo A';i1.value=t1v;i1.style.flex='1';
+    const i1=document.createElement('input');i1.className='adm-inp';i1.placeholder=R32_FIXED[i].a;i1.value=t1v;i1.style.flex='1';
     i1.oninput=()=>adminSetTeam('r16f',i,'t1',i1.value);
-    const i2=document.createElement('input');i2.className='adm-inp';i2.placeholder='Equipo B';i2.value=t2v;i2.style.flex='1';
+    const i2=document.createElement('input');i2.className='adm-inp';i2.placeholder=R32_FIXED[i].b;i2.value=t2v;i2.style.flex='1';
     i2.oninput=()=>adminSetTeam('r16f',i,'t2',i2.value);
-    const b1=document.createElement('button');b1.className='wb'+(w===t1v&&t1v?' active':'');b1.textContent=t1v||'Gana A';
-    const b2=document.createElement('button');b2.className='wb'+(w===t2v&&t2v?' active':'');b2.textContent=t2v||'Gana B';
-    b1.onclick=()=>{adminSetEW('r16f',i,i1.value,i2.value);b1.classList.add('active');b2.classList.remove('active');};
-    b2.onclick=()=>{adminSetEW('r16f',i,i2.value,i1.value);b2.classList.add('active');b1.classList.remove('active');};
+    const b1=document.createElement('button');b1.className='wb'+(w===t1v&&t1v?' active':'');
+    b1.innerHTML=t1v?(fi(getCode(t1v))+' '+t1v):'Gana A';
+    const b2=document.createElement('button');b2.className='wb'+(w===t2v&&t2v?' active':'');
+    b2.innerHTML=t2v?(fi(getCode(t2v))+' '+t2v):'Gana B';
+    b1.onclick=()=>{adminSetEW('r16f',i,i1.value,i2.value);b1.classList.add('active');b2.classList.remove('active');renderAdmin();};
+    b2.onclick=()=>{adminSetEW('r16f',i,i2.value,i1.value);b2.classList.add('active');b1.classList.remove('active');renderAdmin();};
     row.appendChild(i1);row.appendChild(i2);row.appendChild(b1);row.appendChild(b2);
     d.appendChild(lbl);d.appendChild(row);r16.appendChild(d);
   }
