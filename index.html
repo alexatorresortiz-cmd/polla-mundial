@@ -1456,28 +1456,57 @@ function renderResultados(){
     gr.appendChild(sec);
   });
   const el=document.getElementById('resElim');el.innerHTML='';
+  // Title
+  const elimTitle=document.createElement('div');
+  elimTitle.style.cssText='font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:2px;color:var(--green);margin-bottom:14px;';
+  elimTitle.textContent='RESULTADOS — ELIMINATORIAS';
+  el.appendChild(elimTitle);
+
+  const standingsR=calcStandings2(gameState.results.gruposPartidos||{});
+  const best8R=getBest8Thirds2(standingsR);
+
   ELIM.forEach(phase=>{
-    const sec=document.createElement('div');sec.className='rs-sec';
+    const sec=document.createElement('div');sec.className='rs-sec';sec.style.marginBottom='24px';
     const hdr=document.createElement('div');
-    hdr.style.cssText='padding:8px 0;border-bottom:1px solid rgba(74,222,128,.2);margin-bottom:6px;font-family:Bebas Neue,sans-serif;font-size:16px;letter-spacing:2px;color:var(--green);';
+    hdr.style.cssText='font-family:Bebas Neue,sans-serif;font-size:15px;letter-spacing:2px;color:var(--amber);margin-bottom:8px;';
     hdr.textContent=phase.name.toUpperCase();
     sec.appendChild(hdr);
+    let anyMatch=false;
     for(let i=0;i<phase.count;i++){
       const res=(gameState.results.elim[phase.id]||{})[i]||{};
-      const t1=res.t1||'TBD',t2=res.t2||'TBD',w=res.winner||'';
-      const row=document.createElement('div');row.className='rs-match';
-      const pSpan=document.createElement('span');pSpan.className='rs-j';pSpan.textContent='P'+(i+1);
-      const ta=document.createElement('div');ta.className='rs-ta';
-      ta.style.fontWeight=w===t1?'700':'400';ta.style.color=w===t1?'var(--green)':'var(--muted)';
-      if(t1!=='TBD'){ta.appendChild(document.createTextNode(t1+' '));ta.appendChild(flagEl(t1));}else ta.textContent=t1;
-      const sd=document.createElement('div');sd.className='rs-pend';sd.textContent=w?'✓':(res.t1?'Pend.':'—');
-      const tb=document.createElement('div');tb.className='rs-tb';
-      tb.style.fontWeight=w===t2?'700':'400';tb.style.color=w===t2?'var(--green)':'var(--muted)';
-      if(t2!=='TBD'){tb.appendChild(flagEl(t2));tb.appendChild(document.createTextNode(' '+t2));}else tb.textContent=t2;
+      let t1=res.t1||'', t2=res.t2||'';
+      // For 16avos, auto-resolve from standings if not yet saved
+      if(phase.id==='r16f'&&(!t1||!t2)){
+        t1=t1||resolveSlot(R32_FIXED[i].a,standingsR,best8R)||'';
+        t2=t2||resolveSlot(R32_FIXED[i].b,standingsR,best8R)||'';
+      }
+      // Skip rows where neither team is known yet (avoid clutter of TBD vs TBD)
+      if(!t1&&!t2)continue;
+      anyMatch=true;
+      const w=res.winner||'';
+      const row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;padding:9px 4px;border-bottom:1px solid var(--border);gap:10px;';
+      const pSpan=document.createElement('span');pSpan.style.cssText='font-size:10px;color:var(--muted);font-weight:600;width:32px;flex-shrink:0;';pSpan.textContent='P'+(i+1);
+      // Team A
+      const ta=document.createElement('div');
+      ta.style.cssText='flex:1;text-align:right;font-size:13px;display:flex;align-items:center;justify-content:flex-end;gap:6px;font-weight:'+(w&&w===t1?'700':'400')+';color:'+(w&&w===t1?'var(--green)':(t1?'var(--text)':'var(--muted)'))+';';
+      if(t1){ta.appendChild(document.createTextNode(t1+' '));ta.appendChild(flagEl(t1));}
+      else{const ph=document.createElement('span');ph.style.color='var(--muted)';ph.textContent='Por definir';ta.appendChild(ph);}
+      // Status badge (FIN / vs)
+      const sd=document.createElement('div');
+      sd.style.cssText='width:54px;text-align:center;font-size:11px;font-weight:700;flex-shrink:0;';
+      if(w){sd.style.color='var(--green)';sd.style.background='rgba(74,222,128,.12)';sd.style.borderRadius='6px';sd.style.padding='3px 0';sd.textContent='FIN';}
+      else if(t1&&t2){sd.style.color='var(--muted)';sd.textContent='vs';}
+      else{sd.style.color='var(--muted)';sd.textContent='?';}
+      // Team B
+      const tb=document.createElement('div');
+      tb.style.cssText='flex:1;font-size:13px;display:flex;align-items:center;gap:6px;font-weight:'+(w&&w===t2?'700':'400')+';color:'+(w&&w===t2?'var(--green)':(t2?'var(--text)':'var(--muted)'))+';';
+      if(t2){tb.appendChild(flagEl(t2));tb.appendChild(document.createTextNode(' '+t2));}
+      else{const ph=document.createElement('span');ph.style.color='var(--muted)';ph.textContent='?';tb.appendChild(ph);}
       row.appendChild(pSpan);row.appendChild(ta);row.appendChild(sd);row.appendChild(tb);
       sec.appendChild(row);
     }
-    el.appendChild(sec);
+    if(anyMatch)el.appendChild(sec);
   });
 }
 
@@ -1665,6 +1694,19 @@ function renderAdmin(){
   const r16=document.getElementById('admR16');r16.innerHTML='';
   const r16Standings=calcStandings2(gameState.results.gruposPartidos||{});
   const r16Best8=getBest8Thirds2(r16Standings);
+  // Diagnostic: count groups with complete results (6/6 matches)
+  let completeGroups=0;
+  Object.keys(GROUPS).forEach(g=>{
+    const gp=(gameState.results.gruposPartidos&&gameState.results.gruposPartidos[g])||{};
+    const played=Object.values(gp).filter(m=>m.g1!==''&&m.g1!=null&&m.g2!==''&&m.g2!=null).length;
+    if(played===6)completeGroups++;
+  });
+  if(completeGroups<12){
+    const warn=document.createElement('div');
+    warn.style.cssText='background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#fca5a5;';
+    warn.textContent='⚠ Solo '+completeGroups+'/12 grupos tienen los 6 partidos completos. Los cruces de 16avos necesitan que TODOS los grupos estén completos para calcular correctamente los mejores terceros.';
+    r16.appendChild(warn);
+  }
   // Auto-save teams to Firebase if not already saved
   for(let i=0;i<16;i++){
     const res=(gameState.results.elim.r16f||{})[i]||{};
