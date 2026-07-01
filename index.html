@@ -602,8 +602,13 @@ async function enterApp() {
 }
 function updateBracketNav(){
   const btn=document.getElementById('navBracket');
-  if(gameState.phases.elim)btn.classList.remove('locked');
-  else btn.classList.add('locked');
+  // Bracket is always visible - locked only when elim hasn't opened yet
+  // Once elim has been opened at least once, always show
+  if(gameState.phases.elim || gameState.phases.elimWasOpen){
+    btn.classList.remove('locked');
+  } else {
+    btn.classList.add('locked');
+  }
 }
 
 // ── NAV ──
@@ -1305,7 +1310,10 @@ window.closeMod=()=>document.getElementById('mov').classList.remove('open');
 function renderBracket(){
   const open=gameState.phases.elim;
   const lnote=document.getElementById('lnote-b');
-  if(lnote){lnote.textContent=open?'Predicciones abiertas. Toca para avanzar equipos.':'Eliminatorias CERRADAS. Ya no puedes modificar predicciones.';lnote.className='al '+(open?'al-g':'al-r');}
+  if(lnote){
+    if(open){lnote.textContent='Predicciones abiertas. Toca para avanzar equipos.';lnote.className='al al-g';}
+    else{lnote.textContent='Eliminatorias cerradas. Puedes ver tus predicciones pero ya no modificarlas.';lnote.className='al al-a';}
+  }
   const data=currentUser.bracket||{};
   const gruposPartidos=gameState.results.gruposPartidos||{};
   const standings=calcStandings2(gruposPartidos);
@@ -1792,7 +1800,10 @@ async function adminSetEW(phase,idx,winner,loser){
 }
 window.togglePhase=async function(p){
   if(p==='grupos')gameState.phases.grupos=!gameState.phases.grupos;
-  else gameState.phases.elim=!gameState.phases.elim;
+  else{
+    gameState.phases.elim=!gameState.phases.elim;
+    if(gameState.phases.elim)gameState.phases.elimWasOpen=true; // remember it was opened
+  }
   await saveGameState();updateBracketNav();renderAdmin();showToast('Fase actualizada');
 };
 
