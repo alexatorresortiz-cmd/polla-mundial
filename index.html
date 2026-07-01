@@ -602,9 +602,11 @@ async function enterApp() {
 }
 function updateBracketNav(){
   const btn=document.getElementById('navBracket');
-  // Bracket is always visible - locked only when elim hasn't opened yet
-  // Once elim has been opened at least once, always show
-  if(gameState.phases.elim || gameState.phases.elimWasOpen){
+  // Show bracket if elim is open OR if it has ever been opened (elimWasOpen)
+  // Also show if there are any bracket predictions already saved (means it was open before)
+  const hasBeenOpen = gameState.phases.elim || gameState.phases.elimWasOpen || 
+                      (gameState.results && gameState.results.elim && Object.keys(gameState.results.elim).length > 0);
+  if(hasBeenOpen){
     btn.classList.remove('locked');
   } else {
     btn.classList.add('locked');
