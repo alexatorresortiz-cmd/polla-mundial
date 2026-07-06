@@ -1752,12 +1752,12 @@ function renderAdmin(){
     const ptitle=document.createElement('div');ptitle.style.cssText='font-family:Bebas Neue;font-size:15px;letter-spacing:1px;color:var(--green);margin-bottom:8px;';ptitle.textContent=phName;
     ph.appendChild(ptitle);
     for(let i=0;i<phCount;i++){
-      const res=(gameState.results.elim[phId]||{})[i]||{};
+      const res=(gameState.results.elim[phId]||{})[i]||(gameState.results.elim[phId]||{})[String(i)]||{};
       // Auto-resolve from previous round winners if not set
       const prevPh=prevPhase[phId];
       const prev=gameState.results.elim[prevPh]||{};
-      const autoT1=(prev[i*2]||{}).winner||'';
-      const autoT2=(prev[i*2+1]||{}).winner||'';
+      const autoT1=(prev[i*2]||prev[String(i*2)]||{}).winner||'';
+      const autoT2=(prev[i*2+1]||prev[String(i*2+1)]||{}).winner||'';
       const t1v=res.t1||autoT1;
       const t2v=res.t2||autoT2;
       const w=res.winner||'';
@@ -1792,22 +1792,24 @@ function renderAdmin(){
 }
 
 function autoPropagatAll(){
-  // Propagate all existing winners forward through rounds
   const chain=['r16f','r16','qf','sf'];
   const next={r16f:'r16',r16:'qf',qf:'sf',sf:'final'};
   chain.forEach(ph=>{
     const phData=gameState.results.elim[ph]||{};
-    Object.keys(phData).forEach(idx=>{
-      const m=phData[idx];
-      if(m&&m.winner){
-        const nPh=next[ph];
-        const nIdx=Math.floor(parseInt(idx)/2);
-        const slot=parseInt(idx)%2===0?'t1':'t2';
-        if(!gameState.results.elim[nPh])gameState.results.elim[nPh]={};
-        if(!gameState.results.elim[nPh][nIdx])gameState.results.elim[nPh][nIdx]={};
-        if(!gameState.results.elim[nPh][nIdx][slot])
-          gameState.results.elim[nPh][nIdx][slot]=m.winner;
-      }
+    // Firestore returns numeric keys as strings - handle both
+    Object.keys(phData).forEach(idxStr=>{
+      const m=phData[idxStr];
+      if(!m||!m.winner)return;
+      const idx=parseInt(idxStr);
+      const nPh=next[ph];
+      const nIdx=Math.floor(idx/2);
+      const slot=idx%2===0?'t1':'t2';
+      if(!gameState.results.elim[nPh])gameState.results.elim[nPh]={};
+      // Use string key to match Firestore
+      const nIdxStr=String(nIdx);
+      if(!gameState.results.elim[nPh][nIdxStr])gameState.results.elim[nPh][nIdxStr]={};
+      // Always update t1/t2 from winners (overwrite if needed)
+      gameState.results.elim[nPh][nIdxStr][slot]=m.winner;
     });
   });
 }
