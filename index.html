@@ -1740,7 +1740,11 @@ function renderAdmin(){
     d.appendChild(lbl);d.appendChild(row);r16.appendChild(d);
   }
   // Later phases
+  // First, auto-propagate all existing winners to fill next rounds
+  autoPropagatAll();
+
   const lat=document.getElementById('admLater');lat.innerHTML='';
+  const prevPhase={r16:'r16f',qf:'r16',sf:'qf',final:'sf'};
   ['r16','qf','sf','final'].forEach(phId=>{
     const phName={r16:'8avos',qf:'Cuartos',sf:'Semis',final:'Final'}[phId];
     const phCount={r16:8,qf:4,sf:2,final:1}[phId];
@@ -1749,16 +1753,25 @@ function renderAdmin(){
     ph.appendChild(ptitle);
     for(let i=0;i<phCount;i++){
       const res=(gameState.results.elim[phId]||{})[i]||{};
-      const t1v=res.t1||'',t2v=res.t2||'',w=res.winner||'';
+      // Auto-resolve from previous round winners if not set
+      const prevPh=prevPhase[phId];
+      const prev=gameState.results.elim[prevPh]||{};
+      const autoT1=(prev[i*2]||{}).winner||'';
+      const autoT2=(prev[i*2+1]||{}).winner||'';
+      const t1v=res.t1||autoT1;
+      const t2v=res.t2||autoT2;
+      const w=res.winner||'';
       const d=document.createElement('div');d.style.cssText='display:flex;gap:6px;margin-bottom:6px;align-items:center;';
       const i1=document.createElement('input');i1.className='adm-inp';i1.placeholder='Equipo A';i1.value=t1v;i1.style.flex='1';
       i1.oninput=()=>adminSetTeam(phId,i,'t1',i1.value);
       const i2=document.createElement('input');i2.className='adm-inp';i2.placeholder='Equipo B';i2.value=t2v;i2.style.flex='1';
       i2.oninput=()=>adminSetTeam(phId,i,'t2',i2.value);
-      const b1=document.createElement('button');b1.className='wb'+(w===t1v&&t1v?' active':'');b1.textContent=t1v||'Gana A';
-      const b2=document.createElement('button');b2.className='wb'+(w===t2v&&t2v?' active':'');b2.textContent=t2v||'Gana B';
-      b1.onclick=()=>{adminSetEW(phId,i,i1.value,i2.value);b1.classList.add('active');b2.classList.remove('active');};
-      b2.onclick=()=>{adminSetEW(phId,i,i2.value,i1.value);b2.classList.add('active');b1.classList.remove('active');};
+      const b1=document.createElement('button');b1.className='wb'+(w&&w===t1v?' active':'');
+      b1.innerHTML=t1v?(fi(getCode(t1v))+' '+t1v):'Gana A';
+      const b2=document.createElement('button');b2.className='wb'+(w&&w===t2v?' active':'');
+      b2.innerHTML=t2v?(fi(getCode(t2v))+' '+t2v):'Gana B';
+      b1.onclick=()=>{adminSetEW(phId,i,t1v||i1.value,t2v||i2.value);};
+      b2.onclick=()=>{adminSetEW(phId,i,t2v||i2.value,t1v||i1.value);};
       d.appendChild(i1);d.appendChild(i2);d.appendChild(b1);d.appendChild(b2);ph.appendChild(d);
     }
     lat.appendChild(ph);
@@ -1776,6 +1789,27 @@ function renderAdmin(){
   const fbtn=document.createElement('button');fbtn.className='smbtn';fbtn.textContent='Guardar';
   fbtn.onclick=async()=>{gameState.results.finalScore={a:fa.value,b:fb.value};await saveGameState();showToast('Marcador final guardado');};
   fs.appendChild(fbtn);
+}
+
+function autoPropagatAll(){
+  // Propagate all existing winners forward through rounds
+  const chain=['r16f','r16','qf','sf'];
+  const next={r16f:'r16',r16:'qf',qf:'sf',sf:'final'};
+  chain.forEach(ph=>{
+    const phData=gameState.results.elim[ph]||{};
+    Object.keys(phData).forEach(idx=>{
+      const m=phData[idx];
+      if(m&&m.winner){
+        const nPh=next[ph];
+        const nIdx=Math.floor(parseInt(idx)/2);
+        const slot=parseInt(idx)%2===0?'t1':'t2';
+        if(!gameState.results.elim[nPh])gameState.results.elim[nPh]={};
+        if(!gameState.results.elim[nPh][nIdx])gameState.results.elim[nPh][nIdx]={};
+        if(!gameState.results.elim[nPh][nIdx][slot])
+          gameState.results.elim[nPh][nIdx][slot]=m.winner;
+      }
+    });
+  });
 }
 
 async function adminSetTeam(phase,idx,field,val){
