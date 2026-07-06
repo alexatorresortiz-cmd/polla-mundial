@@ -253,7 +253,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   <div class="nav">
     <button class="nb active" data-sec="players" onclick="goSec(this)">Jugadores</button>
     <button class="nb" data-sec="grupos" onclick="goSec(this)">Mis grupos</button>
-    <button class="nb locked" data-sec="bracket" id="navBracket" onclick="goSec(this)">Mi bracket</button>
+    <button class="nb" data-sec="bracket" id="navBracket" onclick="goSec(this)">Mi bracket</button>
     <button class="nb" data-sec="resultados" onclick="goSec(this)">Resultados</button>
     <button class="nb" data-sec="llaves" onclick="goSec(this)">Llaves</button>
     <button class="nb" data-sec="ranking" onclick="goSec(this)">Ranking</button>
@@ -601,16 +601,8 @@ async function enterApp() {
   });
 }
 function updateBracketNav(){
-  const btn=document.getElementById('navBracket');
-  // Show bracket if elim is open OR if it has ever been opened (elimWasOpen)
-  // Also show if there are any bracket predictions already saved (means it was open before)
-  const hasBeenOpen = gameState.phases.elim || gameState.phases.elimWasOpen || 
-                      (gameState.results && gameState.results.elim && Object.keys(gameState.results.elim).length > 0);
-  if(hasBeenOpen){
-    btn.classList.remove('locked');
-  } else {
-    btn.classList.add('locked');
-  }
+  // Always unlock bracket tab - editing is controlled inside the bracket itself
+  document.getElementById('navBracket').classList.remove('locked');
 }
 
 // ── NAV ──
@@ -1798,7 +1790,24 @@ async function adminSetEW(phase,idx,winner,loser){
   gameState.results.elim[phase][idx].winner=winner;
   if(!gameState.results.elim[phase][idx].t1)gameState.results.elim[phase][idx].t1=winner;
   if(!gameState.results.elim[phase][idx].t2)gameState.results.elim[phase][idx].t2=loser;
+  // Auto-propagate winner to next round
+  propagateWinner(phase, idx, winner);
   await saveGameState();showToast('Ganador registrado ✓');
+  renderAdmin();
+}
+
+function propagateWinner(phase, idx, winner){
+  // Map: current phase -> next phase
+  const nextPhase = {r16f:'r16', r16:'qf', qf:'sf', sf:'final'};
+  const next = nextPhase[phase];
+  if(!next)return;
+  // The match index in the next round
+  const nextIdx = Math.floor(idx/2);
+  // Which slot (t1 or t2) — even idx fills t1, odd fills t2
+  const slot = idx%2===0 ? 't1' : 't2';
+  if(!gameState.results.elim[next])gameState.results.elim[next]={};
+  if(!gameState.results.elim[next][nextIdx])gameState.results.elim[next][nextIdx]={};
+  gameState.results.elim[next][nextIdx][slot]=winner;
 }
 window.togglePhase=async function(p){
   if(p==='grupos')gameState.phases.grupos=!gameState.phases.grupos;
